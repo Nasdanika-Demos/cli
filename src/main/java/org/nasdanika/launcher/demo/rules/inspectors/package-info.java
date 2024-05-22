@@ -1,0 +1,1 @@
+package org.nasdanika.launcher.demo.rules.inspectors;

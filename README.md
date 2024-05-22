@@ -1,2 +1,3 @@
-# demo-cli
-Extends Nasdanika CLI and contains demo/test commands
+# Demo CLI
+
+Extends Nasdanika CLI and contains demo/test commands.
