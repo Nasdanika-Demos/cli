@@ -1,6 +1,7 @@
 import org.nasdanika.capability.CapabilityFactory;
 import org.nasdanika.launcher.demo.ModuleGraphCommandFactory;
 import org.nasdanika.launcher.demo.rules.InspectYamlCommandFactory;
+import org.nasdanika.launcher.demo.rules.ListRulesCommandFactory;
 import org.nasdanika.launcher.demo.rules.inspectors.ReflectiveInspectorFactory;
 
 module org.nasdanika.launcher.demo {
@@ -16,6 +17,7 @@ module org.nasdanika.launcher.demo {
 	provides CapabilityFactory with 
 		InspectYamlCommandFactory,
 		ReflectiveInspectorFactory,
-		ModuleGraphCommandFactory;
+		ModuleGraphCommandFactory,
+		ListRulesCommandFactory;
 		
 }

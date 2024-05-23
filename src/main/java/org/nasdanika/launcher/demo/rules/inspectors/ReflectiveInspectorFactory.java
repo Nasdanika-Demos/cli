@@ -5,7 +5,6 @@ import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 import org.nasdanika.capability.CapabilityProvider;
-import org.nasdanika.capability.ServiceCapabilityFactory;
 import org.nasdanika.common.ProgressMonitor;
 import org.nasdanika.models.rules.Inspector;
 import org.nasdanika.models.rules.InspectorCapabilityFactory;
@@ -26,9 +25,9 @@ public class ReflectiveInspectorFactory extends InspectorCapabilityFactory<Objec
 			serviceRequirement,
 			false, 
 			progressMonitor, 
-			new ReflectiveInspectors());
+			new DemoInspectors());
 		
-		return wrap(inspector);
+		return serviceRequirement == null || serviceRequirement.test(inspector) ? wrap(inspector) : empty();
 	}
 
 }

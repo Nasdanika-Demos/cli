@@ -12,11 +12,13 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.nasdanika.cli.ParentCommands;
+import org.nasdanika.cli.RootCommand;
 import org.nasdanika.common.NasdanikaException;
 import org.nasdanika.common.ProgressMonitor;
 import org.nasdanika.launcher.demo.ModuleVersionProvider;
 import org.nasdanika.models.rules.InspectionResult;
-import org.nasdanika.models.rules.cli.AbstractRulesCommand;
+import org.nasdanika.models.rules.cli.AbstractInspectionCommand;
 import org.nasdanika.ncore.util.DirectoryContentFileURIHandler;
 import org.nasdanika.ncore.util.NcoreYamlHandler;
 import org.nasdanika.ncore.util.YamlResourceFactory;
@@ -30,7 +32,8 @@ import picocli.CommandLine.Parameters;
 		name = "inspect-yaml",
 		versionProvider = ModuleVersionProvider.class,
 		mixinStandardHelpOptions = true)
-public class InspectYamlCommand extends AbstractRulesCommand {
+@ParentCommands(RootCommand.class)
+public class InspectYamlCommand extends AbstractInspectionCommand {
 	
 	@Parameters(description = {
 			"Files and directories",
@@ -71,7 +74,7 @@ public class InspectYamlCommand extends AbstractRulesCommand {
 
 	@Override
 	protected boolean isIncluded(String path) {
-		String[] includes = getIncludes();
+		String[] includes = getResourceIncludes();
 		if (includes == null) {
 			return path.endsWith(".yml") || path.endsWith(".yaml");
 		}

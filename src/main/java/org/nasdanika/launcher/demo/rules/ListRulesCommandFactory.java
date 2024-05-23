@@ -11,19 +11,20 @@ import org.nasdanika.common.ProgressMonitor;
 
 import picocli.CommandLine;
 
-public class InspectYamlCommandFactory extends SubCommandCapabilityFactory<InspectYamlCommand> {
+public class ListRulesCommandFactory extends SubCommandCapabilityFactory<ListRulesCommand> {
 
 	@Override
-	protected CompletionStage<InspectYamlCommand> doCreateCommand(
+	protected CompletionStage<ListRulesCommand> doCreateCommand(
 			List<CommandLine> parentPath, 
 			BiFunction<Object, ProgressMonitor, CompletionStage<Iterable<CapabilityProvider<Object>>>> resolver,
 			ProgressMonitor progressMonitor) {
-		return CompletableFuture.completedStage(new InspectYamlCommand());			
+
+		return CompletableFuture.completedStage(new ListRulesCommand());			
 	}
 
 	@Override
-	protected Class<InspectYamlCommand> getCommandType() {
-		return InspectYamlCommand.class;
+	protected Class<ListRulesCommand> getCommandType() {
+		return ListRulesCommand.class;
 	}
 
 }

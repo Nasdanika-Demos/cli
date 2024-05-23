@@ -11,8 +11,8 @@ import org.nasdanika.ncore.util.YamlResource;
  * Testing implicit rule set first
  */
 
+// Name is derived from the class name
 @RuleSet("""		
-		name: Sample Java Rules
 		severities:
 		  error:
 		    name: Error
@@ -26,7 +26,7 @@ import org.nasdanika.ncore.util.YamlResource;
 		        * specRef attribute to RuleSet and Rule - support of loading from classloader resources 
 		        * Generation of HTML documentation
 		""")
-public class ReflectiveInspectors {
+public class DemoInspectors {
 	
 	@Inspector(value = """
 			name: Invalid YAML
@@ -38,7 +38,7 @@ public class ReflectiveInspectors {
 			""",
 			severity = "error",
 			condition = "!errors.isEmpty()") 	
-	public Collection<String> yamlInspector(YamlResource yamlResource) {
+	public Collection<String> invalidYaml(YamlResource yamlResource) {
 		return yamlResource.getErrors().stream().map(Diagnostic::getMessage).toList();
 	}
 	
