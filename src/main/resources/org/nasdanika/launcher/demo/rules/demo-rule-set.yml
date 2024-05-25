@@ -1,0 +1,12 @@
+rules-rule-set:
+  uris: nasdanika://rules/demo-rule-set  
+  id: demo-rule-set
+  name: Demo Rule Set
+  severities:
+    error:
+      name: Error
+  rules:
+    my-rule:
+      rules-rule:
+        name: My rule
+        severity: nasdanika://rules/demo-rule-set/severities/error

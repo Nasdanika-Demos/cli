@@ -42,4 +42,9 @@ public class DemoInspectors {
 		return yamlResource.getErrors().stream().map(Diagnostic::getMessage).toList();
 	}
 	
+	@Inspector(rule = "nasdanika://rules/demo-rule-set/rules/my-rule")
+	public String myRuleInspector(YamlResource yamlResource) {
+		return "My finding";
+	}
+	
 }
