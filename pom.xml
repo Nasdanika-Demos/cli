@@ -42,7 +42,12 @@
 		    <artifactId>junit-jupiter-engine</artifactId>
 		    <version>5.10.2</version>
 		    <scope>test</scope>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>org.nasdanika.html</groupId>
+			<artifactId>app-model-graph</artifactId>
+			<version>2024.5.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

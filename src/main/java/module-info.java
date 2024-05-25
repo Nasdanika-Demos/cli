@@ -11,6 +11,8 @@ module org.nasdanika.launcher.demo {
 	requires org.nasdanika.launcher;
 	requires org.nasdanika.models.rules.cli;
 	requires org.nasdanika.models.echarts.graph;
+	requires org.nasdanika.html.model.app.graph;
+	
 	
 	opens org.nasdanika.launcher.demo to info.picocli;
 	opens org.nasdanika.launcher.demo.rules; // to info.picocli, org.nasdanika.common;

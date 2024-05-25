@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.function.Consumer;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -15,8 +18,13 @@ import org.junit.jupiter.api.Test;
 import org.nasdanika.capability.CapabilityLoader;
 import org.nasdanika.capability.CapabilityProvider;
 import org.nasdanika.capability.ServiceCapabilityFactory;
+import org.nasdanika.common.Context;
+import org.nasdanika.common.Diagnostic;
+import org.nasdanika.common.MutableContext;
 import org.nasdanika.common.PrintStreamProgressMonitor;
 import org.nasdanika.common.ProgressMonitor;
+import org.nasdanika.html.model.app.gen.ActionSiteGenerator;
+import org.nasdanika.html.model.app.graph.emf.ActionGenerator;
 import org.nasdanika.models.rules.Rule;
 import org.nasdanika.models.rules.RuleSet;
 import org.nasdanika.ncore.util.NcoreUtil;
@@ -45,7 +53,7 @@ public class TestRules {
 		ResourceSet resourceSet = ruleSet.eResource().getResourceSet();
 		File dump = new File("target/rule-set.xml");
 		Resource resource = resourceSet.createResource(URI.createFileURI(dump.getAbsolutePath()));
-		resource.getContents().add(EcoreUtil.copy(ruleSet));
+		resource.getContents().add(EcoreUtil.copy(ruleSet.resolve()));
 		try {
 			resource.save(null);
 		} catch (IOException e) {
@@ -62,5 +70,74 @@ public class TestRules {
 		}
 		
 	}
+	
+	@Test
+	public void testGenerateRuleSetDoc() throws Exception {
+		CapabilityLoader capabilityLoader = new CapabilityLoader();
+		ProgressMonitor progressMonitor = new PrintStreamProgressMonitor();
+		Iterable<CapabilityProvider<Object>> ruleSetProviders = capabilityLoader.load(ServiceCapabilityFactory.createRequirement(RuleSet.class), progressMonitor);
+		Collection<Throwable> failures = new ArrayList<>();
+		Collection<RuleSet> ruleSets = new ArrayList<>();
+		for (CapabilityProvider<Object> provider: ruleSetProviders) {
+			provider.getPublisher().subscribe(rs -> ruleSets.add((RuleSet) rs), failures::add);
+		}
+		for (Throwable th: failures) {
+			th.printStackTrace();
+		}
+		assertTrue(failures.isEmpty(), failures.toString());
+		
+		MutableContext context = Context.EMPTY_CONTEXT.fork();
+		Consumer<Diagnostic> diagnosticConsumer = d -> d.dump(System.out, 0);		
+		
+		for (RuleSet ruleSet: ruleSets) {
+			File actionModelsDir = new File("target\\action-models\\");
+			actionModelsDir.mkdirs();
+									
+			File output = new File(actionModelsDir, ruleSet.getId() + "-actions.xmi");
+					
+			ActionGenerator actionGenerator = ActionGenerator.load(ruleSet, context, null, null, null, progressMonitor); 
+			actionGenerator.generateActionModel(
+					diagnosticConsumer, 
+					output,
+					progressMonitor);
+					
+			// Generating a web site
+			String rootActionResource = "actions.yml";
+			URI rootActionURI = URI.createFileURI(new File(rootActionResource).getAbsolutePath());//.appendFragment("/");
+			
+			String pageTemplateResource = "page-template.yml";
+			URI pageTemplateURI = URI.createFileURI(new File(pageTemplateResource).getAbsolutePath());//.appendFragment("/");
+			
+			String siteMapDomain = "https://architecture.models.nasdanika.org/demos/internet-banking-system";		
+			ActionSiteGenerator actionSiteGenerator = new ActionSiteGenerator() {
+				
+				protected boolean isDeleteOutputPath(String path) {
+					return !"CNAME".equals(path);				
+				};
+				
+			};		
+			
+			Map<String, Collection<String>> errors = actionSiteGenerator.generate(
+					rootActionURI, 
+					pageTemplateURI, 
+					siteMapDomain, 
+					new File("../../docs/demo/internet-banking-system"), // Publishing to the repository's docs directory for GitHub pages 
+					new File("target/ibs-doc-site-work-dir"), 
+					true);
+					
+			int errorCount = 0;
+			for (Entry<String, Collection<String>> ee: errors.entrySet()) {
+				System.err.println(ee.getKey());
+				for (String error: ee.getValue()) {
+					System.err.println("\t" + error);
+					++errorCount;
+				}
+			}
+			
+			System.out.println("There are " + errorCount + " site errors");
+		}
+		
+	}
+	
 
 }
