@@ -53,6 +53,7 @@ public class TestRules {
 		}
 		System.out.println(ruleSet.getId());
 		System.out.println(NcoreUtil.getIdentifiers(ruleSet));
+		System.out.println(ruleSet.getDocumentation());
 		
 		for (Rule rule: ruleSet.getRules()) {
 			System.out.println(rule.getId());

@@ -1,9 +1,7 @@
 rules-rule-set:
-  uris: nasdanika://rules/demo-rule-set  
+  uris: nasdanika://rules/base-rule-set  
   id: demo-rule-set
   name: Demo Rule Set
-  extends:
-    - base-rule-set.yml
   documentation:
     content-markdown:
       source:
@@ -21,15 +19,8 @@ rules-rule-set:
              
              * One
              * Two    
-    warning:
-      name: Warning      
   rules:
     my-rule:
       rules-rule:
-        name: My rule
+        name: My base rule
         severity: nasdanika://rules/demo-rule-set/severities/error
-    my-second-rule:
-      rules-rule:
-        name: My Second Rule
-        severity: nasdanika://rules/demo-rule-set/severities/warning        
-        
