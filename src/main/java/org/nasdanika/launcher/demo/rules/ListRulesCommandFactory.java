@@ -1,30 +1,20 @@
 package org.nasdanika.launcher.demo.rules;
 
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-import java.util.function.BiFunction;
+import java.util.Collection;
 
-import org.nasdanika.capability.CapabilityProvider;
-import org.nasdanika.cli.SubCommandCapabilityFactory;
-import org.nasdanika.common.ProgressMonitor;
+import org.nasdanika.models.rules.RuleSet;
+import org.nasdanika.models.rules.cli.RuleSetsCommandFactory;
 
-import picocli.CommandLine;
-
-public class ListRulesCommandFactory extends SubCommandCapabilityFactory<ListRulesCommand> {
-
-	@Override
-	protected CompletionStage<ListRulesCommand> doCreateCommand(
-			List<CommandLine> parentPath, 
-			BiFunction<Object, ProgressMonitor, CompletionStage<Iterable<CapabilityProvider<Object>>>> resolver,
-			ProgressMonitor progressMonitor) {
-
-		return CompletableFuture.completedStage(new ListRulesCommand());			
-	}
+public class ListRulesCommandFactory extends RuleSetsCommandFactory<ListRulesCommand> {
 
 	@Override
 	protected Class<ListRulesCommand> getCommandType() {
 		return ListRulesCommand.class;
+	}
+
+	@Override
+	protected ListRulesCommand createCommand(Collection<RuleSet> ruleSets) {
+		return new ListRulesCommand(ruleSets);
 	}
 
 }

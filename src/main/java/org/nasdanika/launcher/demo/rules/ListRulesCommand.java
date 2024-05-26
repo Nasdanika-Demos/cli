@@ -32,26 +32,22 @@ import picocli.CommandLine.Option;
 @ParentCommands(RootCommand.class)
 public class ListRulesCommand extends AbstractRuleCommand {
 	
+	private Collection<RuleSet> ruleSets;
+	
+	public ListRulesCommand(Collection<RuleSet> ruleSets) {
+		this.ruleSets = ruleSets;
+	}
+	
 	@Option(names = {"-o", "--output"}, description = "Output file")
 	private File output;
-	
-	@Mixin
-	private ProgressMonitorMixIn progressMonitorMixIn;	 
 
 	@Override
 	public Integer call() throws Exception {
-		CapabilityLoader capabilityLoader = new CapabilityLoader();
-		ProgressMonitor progressMonitor = progressMonitorMixIn.createProgressMonitor(1);
-		Iterable<CapabilityProvider<Object>> ruleSetProviders = capabilityLoader.load(ServiceCapabilityFactory.createRequirement(RuleSet.class), progressMonitor);
-		Collection<RuleSet> ruleSets = Collections.synchronizedCollection(new ArrayList<>());
-		for (CapabilityProvider<Object> provider: ruleSetProviders) {
-			provider.getPublisher().subscribe(rs -> ruleSets.add((RuleSet) rs), error -> error.printStackTrace());
-		}
 		if (output == null) {
-			generateReport(ruleSets, System.out, progressMonitor);
+			generateReport(ruleSets, System.out);
 		} else {
 			try (PrintStream out = new PrintStream(output)) {
-				generateReport(ruleSets, out, progressMonitor);
+				generateReport(ruleSets, out);
 			} catch (FileNotFoundException e) {
 				throw new NasdanikaException(e);
 			}
@@ -61,8 +57,7 @@ public class ListRulesCommand extends AbstractRuleCommand {
 
 	protected void generateReport(
 			Collection<RuleSet> ruleSets, 
-			PrintStream out, 
-			ProgressMonitor progressMonitor) {
+			PrintStream out) {
 		
 		for (RuleSet ruleSet: ruleSets) {
 			out.println(ruleSet.getId() + ": " + ruleSet.getName());				
