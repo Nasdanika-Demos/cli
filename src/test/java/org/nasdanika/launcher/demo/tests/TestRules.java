@@ -102,10 +102,10 @@ public class TestRules {
 					progressMonitor);
 					
 			// Generating a web site
-			String rootActionResource = "actions.yml";
+			String rootActionResource = "test-data/doc-gen/actions.yml";
 			URI rootActionURI = URI.createFileURI(new File(rootActionResource).getAbsolutePath());//.appendFragment("/");
 			
-			String pageTemplateResource = "page-template.yml";
+			String pageTemplateResource = "test-data/doc-gen/page-template.yml";
 			URI pageTemplateURI = URI.createFileURI(new File(pageTemplateResource).getAbsolutePath());//.appendFragment("/");
 			
 			String siteMapDomain = "https://architecture.models.nasdanika.org/demos/internet-banking-system";		
@@ -121,8 +121,8 @@ public class TestRules {
 					rootActionURI, 
 					pageTemplateURI, 
 					siteMapDomain, 
-					new File("../../docs/demo/internet-banking-system"), // Publishing to the repository's docs directory for GitHub pages 
-					new File("target/ibs-doc-site-work-dir"), 
+					new File("target/rule-set-doc"), // Publishing to the repository's docs directory for GitHub pages 
+					new File("target/doc-gen-work-dir"), 
 					true);
 					
 			int errorCount = 0;

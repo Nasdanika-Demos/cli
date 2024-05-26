@@ -1,7 +1,9 @@
 rules-rule-set:
   uris: nasdanika://rules/demo-rule-set  
-  id: demo-rule-set
+  id: demo-rule-sub-set
   name: Demo Rule Set
+  extends:
+    - base-rule-set.yml
   documentation:
     content-markdown:
       source:
@@ -27,23 +29,8 @@ rules-rule-set:
         name: My rule
         severity: nasdanika://rules/demo-rule-set/severities/error
         description: Some description - a short summary
-        documentation:
-          content-markdown:
-            source:
-             content-text: |+2
-               Inline markdown ``example``.
-             
-               * Three
-               * Four    
-        
     my-second-rule:
       rules-rule:
         name: My Second Rule
         severity: nasdanika://rules/demo-rule-set/severities/warning        
-        documentation:
-          content-markdown:
-            source:
-              content-resource:
-                location: second-rule.md
-                interpolate: true  
         

@@ -9,7 +9,6 @@ import org.nasdanika.launcher.demo.rules.inspectors.ReflectiveInspectorFactory;
 module org.nasdanika.launcher.demo {
 	
 	requires org.nasdanika.launcher;
-	requires org.nasdanika.models.rules.cli;
 	requires org.nasdanika.models.echarts.graph;
 	requires org.nasdanika.html.model.app.graph;
 	
