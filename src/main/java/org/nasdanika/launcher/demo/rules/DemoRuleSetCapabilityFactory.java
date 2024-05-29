@@ -7,7 +7,7 @@ import org.nasdanika.models.rules.util.RuleSetCapabilityFactory;
 public class DemoRuleSetCapabilityFactory extends RuleSetCapabilityFactory {
 
 	@Override
-	protected URI getResourceSetURI() {
+	protected URI getRuleSetURI() {
 		return URI.createURI("demo-rule-set.yml").resolve(Util.createClassURI(getClass()));
 	}
 
