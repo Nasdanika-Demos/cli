@@ -20,14 +20,14 @@ public class ReflectiveInspectorFactory extends InspectorCapabilityFactory<Objec
 			BiFunction<Object, ProgressMonitor, CompletionStage<Iterable<CapabilityProvider<Object>>>> resolver,
 			ProgressMonitor progressMonitor) {
 
-		Inspector<Object> inspector = new InspectorSet(
+		InspectorSet inspector = new InspectorSet(
 			RuleManager.LOADING_RULE_MANAGER, 
 			serviceRequirement,
 			false, 
 			progressMonitor, 
 			new DemoInspectors());
 		
-		return serviceRequirement == null || serviceRequirement.test(inspector) ? wrap(inspector) : empty();
+		return (serviceRequirement == null || serviceRequirement.test(inspector)) && !inspector.isEmpty() ? wrap(inspector) : empty();
 	}
 
 }

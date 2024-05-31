@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.nasdanika</groupId>
-	<version>2024.5.0</version>
+	<version>2024.5.1</version>
 	<artifactId>demo-cli</artifactId>
 	<packaging>jar</packaging>
 	<name>Nasdanika demo command line interface</name>
@@ -12,20 +12,22 @@
 		<dependency>
 			<groupId>org.nasdanika</groupId>
 			<artifactId>cli-launcher</artifactId>
-			<version>2024.5.0</version>
+			<version>2024.5.1</version>
 		</dependency>
 		<dependency>			
 			<groupId>org.nasdanika.models.echarts</groupId>
-			<version>2024.5.0</version>
+			<version>2024.5.1</version>
 			<artifactId>graph</artifactId>
 		</dependency>		
 
 		<!-- To prevent slf4j complaining -->
+		<!--
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-nop</artifactId>
 			<version>1.7.36</version>
 		</dependency>
+		-->
 		<dependency>
 		    <groupId>org.junit.jupiter</groupId>
 		    <artifactId>junit-jupiter-api</artifactId>
@@ -41,7 +43,7 @@
 		<dependency>
 			<groupId>org.nasdanika.html</groupId>
 			<artifactId>app-model-graph</artifactId>
-			<version>2024.5.0</version>
+			<version>2024.5.1</version>
 		</dependency>
 	</dependencies>
 
