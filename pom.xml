@@ -18,7 +18,7 @@
 			<groupId>org.nasdanika.models.echarts</groupId>
 			<version>2024.5.1</version>
 			<artifactId>graph</artifactId>
-		</dependency>		
+		</dependency>				
 
 		<!-- To prevent slf4j complaining -->
 		<!--
