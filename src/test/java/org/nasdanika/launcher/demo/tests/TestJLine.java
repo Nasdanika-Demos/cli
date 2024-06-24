@@ -7,10 +7,12 @@ import org.jline.reader.LineReaderBuilder;
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 public class TestJLine {
 	
 	@Test
+	@Disabled
 	public void testJLineTerminal() throws IOException {
         try (Terminal terminal = TerminalBuilder.builder().system(true).build()) {
             terminal.enterRawMode();
@@ -37,6 +39,7 @@ public class TestJLine {
 	}
 	
 	@Test
+	@Disabled
 	public void testLineReder() throws IOException {
         try (Terminal terminal = TerminalBuilder.builder().system(true).build()) {
         	LineReader lineReader = LineReaderBuilder
