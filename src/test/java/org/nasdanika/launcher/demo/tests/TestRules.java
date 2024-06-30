@@ -95,7 +95,15 @@ public class TestRules {
 									
 			File output = new File(actionModelsDir, ruleSet.getId() + "-actions.xmi");
 					
-			ActionGenerator actionGenerator = ActionGenerator.load(ruleSet, context, null, null, null, progressMonitor); 
+			ActionGenerator actionGenerator = ActionGenerator.load(
+					ruleSet, 
+					context, 
+					null, 
+					null, 
+					null, 
+					diagnosticConsumer, 
+					progressMonitor);
+			
 			actionGenerator.generateActionModel(
 					diagnosticConsumer, 
 					output,
