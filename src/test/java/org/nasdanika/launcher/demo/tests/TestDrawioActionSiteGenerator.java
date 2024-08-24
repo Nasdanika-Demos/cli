@@ -16,7 +16,7 @@ import org.nasdanika.html.bootstrap.Theme;
 import org.nasdanika.html.model.app.Action;
 import org.nasdanika.html.model.app.AppFactory;
 import org.nasdanika.html.model.app.Label;
-import org.nasdanika.html.model.app.gen.ActionSiteGenerator;
+import org.nasdanika.html.model.app.gen.AppSiteGenerator;
 import org.nasdanika.html.model.app.graph.drawio.DrawioActionGenerator;
 
 public class TestDrawioActionSiteGenerator {
@@ -46,7 +46,7 @@ public class TestDrawioActionSiteGenerator {
 		rootAction.getChildren().addAll(labels);
 		
 		String siteMapDomain = "https://nasdanika.org/demos/" + diagramName;		
-		ActionSiteGenerator actionSiteGenerator = new ActionSiteGenerator();		
+		AppSiteGenerator actionSiteGenerator = new AppSiteGenerator();		
 		
 		Map<String, Collection<String>> errors = actionSiteGenerator.generate(
 				rootAction, // URI.appendFragment("/"), 
