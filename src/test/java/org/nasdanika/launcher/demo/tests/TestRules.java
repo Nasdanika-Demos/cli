@@ -24,7 +24,7 @@ import org.nasdanika.common.MutableContext;
 import org.nasdanika.common.PrintStreamProgressMonitor;
 import org.nasdanika.common.ProgressMonitor;
 import org.nasdanika.html.model.app.gen.AppSiteGenerator;
-import org.nasdanika.html.model.app.graph.emf.ActionGenerator;
+import org.nasdanika.html.model.app.graph.emf.HtmlAppGenerator;
 import org.nasdanika.models.rules.Rule;
 import org.nasdanika.models.rules.RuleSet;
 import org.nasdanika.ncore.util.NcoreUtil;
@@ -95,7 +95,7 @@ public class TestRules {
 									
 			File output = new File(actionModelsDir, ruleSet.getId() + "-actions.xmi");
 					
-			ActionGenerator actionGenerator = ActionGenerator.load(
+			HtmlAppGenerator htmlAppGenerator = HtmlAppGenerator.load(
 					ruleSet, 
 					context, 
 					null, 
@@ -104,7 +104,7 @@ public class TestRules {
 					diagnosticConsumer, 
 					progressMonitor);
 			
-			actionGenerator.generateActionModel(
+			htmlAppGenerator.generateHtmlAppModel(
 					diagnosticConsumer, 
 					output,
 					progressMonitor);
