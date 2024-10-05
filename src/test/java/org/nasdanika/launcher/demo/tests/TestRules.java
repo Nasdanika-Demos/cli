@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Consumer;
@@ -96,7 +97,7 @@ public class TestRules {
 			File output = new File(actionModelsDir, ruleSet.getId() + "-actions.xmi");
 					
 			HtmlAppGenerator htmlAppGenerator = HtmlAppGenerator.load(
-					ruleSet, 
+					Collections.singleton(ruleSet), 
 					context, 
 					null, 
 					null, 

@@ -5,6 +5,7 @@ import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 import org.nasdanika.capability.CapabilityProvider;
+import org.nasdanika.capability.CapabilityFactory.Loader;
 import org.nasdanika.common.ProgressMonitor;
 import org.nasdanika.models.rules.Inspector;
 import org.nasdanika.models.rules.InspectorCapabilityFactory;
@@ -17,7 +18,7 @@ public class ReflectiveInspectorFactory extends InspectorCapabilityFactory<Objec
 	protected CompletionStage<Iterable<CapabilityProvider<Inspector<Object>>>> createService(
 			Class<Inspector<Object>> serviceType, 
 			Predicate<Inspector<Object>> serviceRequirement,
-			BiFunction<Object, ProgressMonitor, CompletionStage<Iterable<CapabilityProvider<Object>>>> resolver,
+			Loader loader,
 			ProgressMonitor progressMonitor) {
 
 		InspectorSet inspector = new InspectorSet(

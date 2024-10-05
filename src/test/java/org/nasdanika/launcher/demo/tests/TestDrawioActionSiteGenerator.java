@@ -17,7 +17,7 @@ import org.nasdanika.html.model.app.Action;
 import org.nasdanika.html.model.app.AppFactory;
 import org.nasdanika.html.model.app.Label;
 import org.nasdanika.html.model.app.gen.AppSiteGenerator;
-import org.nasdanika.html.model.app.graph.drawio.DrawioActionGenerator;
+import org.nasdanika.html.model.app.graph.drawio.DrawioHtmlAppGenerator;
 
 public class TestDrawioActionSiteGenerator {
 			
@@ -35,7 +35,7 @@ public class TestDrawioActionSiteGenerator {
 	
 	private void generateDrawioActionSite(String diagramName) throws Exception {
 		Document document = Document.load(new File("test-data/" + diagramName + ".drawio").getCanonicalFile()); 
-		DrawioActionGenerator actionGenerator = new DrawioActionGenerator();
+		DrawioHtmlAppGenerator actionGenerator = new DrawioHtmlAppGenerator();
 		ProgressMonitor progressMonitor = new PrintStreamProgressMonitor();		
 		Supplier<Collection<Label>> labelSupplier = actionGenerator.createLabelsSupplier(document, progressMonitor);
 		Consumer<Diagnostic> diagnosticConsumer = d -> d.dump(System.out, 0);

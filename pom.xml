@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.nasdanika</groupId>
-	<version>2024.8.0</version>
+	<version>2024.10.0</version>
 	<artifactId>demo-cli</artifactId>
 	<packaging>jar</packaging>
 	<name>Nasdanika demo command line interface</name>
@@ -12,13 +12,18 @@
 		<dependency>
 			<groupId>org.nasdanika</groupId>
 			<artifactId>cli-launcher</artifactId>
-			<version>2024.8.0</version>
+			<version>2024.10.0</version>
 		</dependency>
 		<dependency>			
 			<groupId>org.nasdanika.models.echarts</groupId>
-			<version>2024.8.0</version>
+			<version>2024.10.0</version>
 			<artifactId>graph</artifactId>
 		</dependency>				
+		<dependency>			
+			<groupId>org.nasdanika.models.ecore</groupId>
+			<artifactId>cli</artifactId>
+			<version>2024.10.0</version>
+		</dependency>
 
 		<!-- To prevent slf4j complaining -->
 		<!--
@@ -31,19 +36,19 @@
 		<dependency>
 		    <groupId>org.junit.jupiter</groupId>
 		    <artifactId>junit-jupiter-api</artifactId>
-		    <version>5.10.2</version>
+		    <version>5.11.0</version>
 		    <scope>test</scope>
 		</dependency>		
 		<dependency>
 		    <groupId>org.junit.jupiter</groupId>
 		    <artifactId>junit-jupiter-engine</artifactId>
-		    <version>5.10.2</version>
+		    <version>5.11.0</version>
 		    <scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.nasdanika.html</groupId>
 			<artifactId>app-model-graph</artifactId>
-			<version>2024.8.0</version>
+			<version>2024.10.0</version>
 		</dependency>
 	</dependencies>
 
@@ -74,7 +79,7 @@
 		        <plugin>
 		            <groupId>org.apache.maven.plugins</groupId>
 	        	    <artifactId>maven-failsafe-plugin</artifactId>
-		            <version>3.3.0</version>
+		            <version>3.5.0</version>
 				    <executions>
 				        <execution>
 				            <goals>
