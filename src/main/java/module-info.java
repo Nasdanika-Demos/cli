@@ -12,6 +12,8 @@ module org.nasdanika.launcher.demo {
 	requires org.nasdanika.models.echarts.graph;
 	requires org.nasdanika.html.model.app.graph;
 	requires java.sql;
+	requires java.xml;
+	requires java.xml.bind;
 	
 	opens org.nasdanika.launcher.demo to info.picocli;
 	opens org.nasdanika.launcher.demo.rules; // to info.picocli, org.nasdanika.common;

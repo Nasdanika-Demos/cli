@@ -24,6 +24,16 @@
 			<artifactId>cli</artifactId>
 			<version>2024.10.0</version>
 		</dependency>
+		<dependency>			
+			<groupId>org.nasdanika.models.gitlab</groupId>
+			<artifactId>cli</artifactId>
+			<version>2024.10.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.nasdanika.html</groupId>
+			<artifactId>app-model-graph</artifactId>
+			<version>2024.10.0</version>
+		</dependency>
 
 		<!-- To prevent slf4j complaining -->
 		<!--
@@ -44,11 +54,6 @@
 		    <artifactId>junit-jupiter-engine</artifactId>
 		    <version>5.11.0</version>
 		    <scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.nasdanika.html</groupId>
-			<artifactId>app-model-graph</artifactId>
-			<version>2024.10.0</version>
 		</dependency>
 	</dependencies>
 

@@ -17,7 +17,7 @@ public class ListInspectableRulesCommandFactory extends SubCommandCapabilityFact
 			Loader loader,
 			ProgressMonitor progressMonitor) {
 
-		return CompletableFuture.completedStage(new ListInspectableRulesCommand());			
+		return CompletableFuture.completedStage(new ListInspectableRulesCommand(loader.getCapabilityLoader()));			
 	}
 
 	@Override

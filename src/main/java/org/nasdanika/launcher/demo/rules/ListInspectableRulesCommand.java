@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EObject;
+import org.nasdanika.capability.CapabilityLoader;
 import org.nasdanika.cli.ParentCommands;
 import org.nasdanika.cli.RootCommand;
 import org.nasdanika.common.NasdanikaException;
@@ -29,6 +30,10 @@ import picocli.CommandLine.Option;
 		mixinStandardHelpOptions = true)
 @ParentCommands(RootCommand.class)
 public class ListInspectableRulesCommand extends AbstractInspectorCommand {
+	
+	public ListInspectableRulesCommand(CapabilityLoader capabilityLoader) {
+		this.capabilityLoader = capabilityLoader;
+	}
 	
 	@Option(names = {"-o", "--output"}, description = "Output file")
 	private File output;	

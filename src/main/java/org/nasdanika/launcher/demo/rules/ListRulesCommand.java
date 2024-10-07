@@ -3,25 +3,17 @@ package org.nasdanika.launcher.demo.rules;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
-import org.nasdanika.capability.CapabilityLoader;
-import org.nasdanika.capability.CapabilityProvider;
-import org.nasdanika.capability.ServiceCapabilityFactory;
 import org.nasdanika.cli.ParentCommands;
-import org.nasdanika.cli.ProgressMonitorMixIn;
 import org.nasdanika.cli.RootCommand;
 import org.nasdanika.common.NasdanikaException;
-import org.nasdanika.common.ProgressMonitor;
 import org.nasdanika.launcher.demo.ModuleVersionProvider;
 import org.nasdanika.models.rules.Rule;
 import org.nasdanika.models.rules.RuleSet;
 import org.nasdanika.models.rules.cli.AbstractRuleCommand;
 
 import picocli.CommandLine.Command;
-import picocli.CommandLine.Mixin;
 import picocli.CommandLine.Option;
 
 @Command(
