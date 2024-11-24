@@ -63,7 +63,7 @@ public class TestStats {
 		Map<Metric, int[]> measurements = new TreeMap<>();
 		BiConsumer<Metric, Integer> measurementConsumer = (metric, measurement) -> measurements.computeIfAbsent(metric, m -> new int[] { 0 })[0] += measurement;
 		for (String gitRepo: GIT_REPOS) {
-			repoStats(new File("../" + gitRepo), measurementConsumer);
+			repoStats(new File("../../git/" + gitRepo), measurementConsumer);
 		}
 		for (String gitModelRepo: GIT_MODEL_REPOS) {
 			repoStats(new File("../../git-models/" + gitModelRepo), measurementConsumer);

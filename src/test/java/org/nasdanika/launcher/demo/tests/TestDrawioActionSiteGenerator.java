@@ -13,11 +13,11 @@ import org.nasdanika.common.ProgressMonitor;
 import org.nasdanika.common.Supplier;
 import org.nasdanika.drawio.Document;
 import org.nasdanika.html.bootstrap.Theme;
-import org.nasdanika.html.model.app.Action;
-import org.nasdanika.html.model.app.AppFactory;
-import org.nasdanika.html.model.app.Label;
-import org.nasdanika.html.model.app.gen.AppSiteGenerator;
-import org.nasdanika.html.model.app.graph.drawio.DrawioHtmlAppGenerator;
+import org.nasdanika.models.app.Action;
+import org.nasdanika.models.app.AppFactory;
+import org.nasdanika.models.app.Label;
+import org.nasdanika.models.app.gen.AppSiteGenerator;
+import org.nasdanika.models.app.graph.drawio.DrawioHtmlAppGenerator;
 
 public class TestDrawioActionSiteGenerator {
 			
