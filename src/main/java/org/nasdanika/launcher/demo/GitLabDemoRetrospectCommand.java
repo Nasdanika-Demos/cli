@@ -11,6 +11,7 @@ import org.nasdanika.capability.ServiceCapabilityFactory;
 import org.nasdanika.capability.ServiceCapabilityFactory.Requirement;
 import org.nasdanika.capability.emf.ResourceSetRequirement;
 import org.nasdanika.cli.CommandBase;
+import org.nasdanika.cli.Description;
 import org.nasdanika.cli.ParentCommands;
 import org.nasdanika.common.PrintStreamProgressMonitor;
 import org.nasdanika.common.ProgressMonitor;
@@ -27,6 +28,7 @@ import picocli.CommandLine.ParentCommand;
 		name = "demo",
 		mixinStandardHelpOptions = true)
 @ParentCommands(GitLabRetrospectCommand.class)
+@Description(icon = "https://docs.nasdanika.org/images/demo.svg")
 public class GitLabDemoRetrospectCommand extends CommandBase {
 	
 	public GitLabDemoRetrospectCommand(CapabilityLoader capabilityLoader) {
