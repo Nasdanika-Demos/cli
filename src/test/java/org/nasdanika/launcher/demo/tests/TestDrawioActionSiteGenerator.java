@@ -6,13 +6,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Consumer;
 
+import org.eclipse.emf.common.util.URI;
 import org.junit.jupiter.api.Test;
 import org.nasdanika.common.Diagnostic;
 import org.nasdanika.common.PrintStreamProgressMonitor;
 import org.nasdanika.common.ProgressMonitor;
 import org.nasdanika.common.Supplier;
 import org.nasdanika.drawio.Document;
-import org.nasdanika.html.bootstrap.Theme;
 import org.nasdanika.models.app.Action;
 import org.nasdanika.models.app.AppFactory;
 import org.nasdanika.models.app.Label;
@@ -50,7 +50,7 @@ public class TestDrawioActionSiteGenerator {
 		
 		Map<String, Collection<String>> errors = actionSiteGenerator.generate(
 				rootAction, // URI.appendFragment("/"), 
-				Theme.Cerulean.pageTemplateCdnURI, 
+				URI.createFileURI(new File("page-template.yml").getAbsolutePath()),  //Theme.Cerulean.pageTemplateCdnURI, 
 				siteMapDomain, 
 				new File("target/drawio-action-site/" + diagramName), 
 				new File("target/doc-site-work-dir/" + diagramName), 

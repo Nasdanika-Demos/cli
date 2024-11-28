@@ -26,7 +26,8 @@ public class TestStats {
 		
 	}
 		
-	private final String[] GIT_REPOS = { "core", "html", "cli", "demo-cli", "nasdanika.github.io", "retrieval-augmented-generation" };	
+	private final String[] GIT_REPOS = { "core", "html", "cli", "nasdanika.github.io", "retrieval-augmented-generation" };	
+	private final String[] GIT_DEMO_REPOS = { "cli" };
 	private final String[] GIT_MODEL_REPOS = { 
 		"echarts",
 		"ecore",
@@ -52,6 +53,7 @@ public class TestStats {
 		"enterprise",
 		"function-flow",
 		"nature",
+		"education",
 		"rules"
 	};
 	
@@ -67,8 +69,10 @@ public class TestStats {
 		}
 		for (String gitModelRepo: GIT_MODEL_REPOS) {
 			repoStats(new File("../../git-models/" + gitModelRepo), measurementConsumer);
-		}
-		
+		}		
+		for (String gitModelRepo: GIT_DEMO_REPOS) {
+			repoStats(new File("../" + gitModelRepo), measurementConsumer);
+		}		
 		
 		measurements.entrySet().forEach(e -> System.out.println(e.getKey() + " = " + e.getValue()[0]));
 	}
