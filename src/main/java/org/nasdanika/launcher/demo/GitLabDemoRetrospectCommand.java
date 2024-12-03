@@ -55,7 +55,6 @@ public class GitLabDemoRetrospectCommand extends CommandBase {
 		Result<String> result = parent.apply(this::apply);				
 		System.out.println(result);
 		return 0;
-	}
-	
+	}	
 	
 }
