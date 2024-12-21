@@ -49,18 +49,27 @@ public class DemoMavenSourceAnalysisCommand extends MavenVisitCommand {
 		return new Visitor<T>() {
 
 			@Override
-			public boolean shallVisit(URI uri, String path, ProgressMonitor progressMonitor) {				
+			public boolean shallVisit(
+					URI uri, 
+					String path, 
+					ProgressMonitor progressMonitor) {				
 				System.out.println("> " + uri + " -> " + path);				
 				Build build = model.getBuild();
 				String sourceDir = build == null ? "src/main/java/" : build.getSourceDirectory();				
-				if (path != null && path.startsWith(sourceDir) && path.endsWith(CompilationUnit.JAVA_EXTENSION)) {
+				if (path != null 
+						&& path.startsWith(sourceDir) 
+						&& path.endsWith(CompilationUnit.JAVA_EXTENSION)) {
 					return true; // We are interested in sources
 				}
 				return uri.toString().endsWith("/");
 			}
 
 			@Override
-			public void visit(URI uri, String path, EObject obj, ProgressMonitor progressMonitor) {
+			public void visit(
+					URI uri, 
+					String path, 
+					EObject obj, 
+					ProgressMonitor progressMonitor) {
 				System.out.println(">> "  + uri + " -> " + path + ": " + obj);				
 			}
 
