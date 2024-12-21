@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="EN">
+  <head>
+    <title>demo-analyze</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/simplex/bootstrap.min.css" id="nsd-bootstrap-theme-stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Nasdanika-Models/html-app@master/gen/web-resources/css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jstree@3.3.11/dist/themes/default/style.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-vue@2.21.2/dist/bootstrap-vue.css">
+    <script src="https://cdn.jsdelivr.net/gh/Nasdanika-Models/html-app@master/gen/web-resources/js/common.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Nasdanika-Models/html-app@master/gen/web-resources/js/dark-head.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jstree@3.3.11/dist/jstree.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-vue@2.21.2/dist/bootstrap-vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Nasdanika-Models/html-app@master/gen/web-resources/js/components/table.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9BRJVLK8CC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9BRJVLK8CC');
+</script>    
+
+<script src="../../../../search-documents.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/olivernn/lunr.js@v2.3.9/lunr.js"></script>
+
+<script>
+// Script for full-text search of JsTree
+
+window.nsdJsTreeSearchCallback = function(str, node) { 
+    var sf = new $.vakata.search(str, true, { caseSensitive : false, fuzzy : false }); 
+    if (sf.search(node.text).isMatch) {
+		return true;
+	} 
+    let searchResult = this.search(str); 
+    for (const sr in searchResult) {
+        if (searchResult[sr].ref === node.original['data-nsd-label-uuid']) {
+            return true;
+        } 
+    } 
+    return false; 
+}.bind(lunr(function () {
+			  this.ref('id');
+			  this.field('title');
+			  this.field('content');
+
+			  for (const key in searchDocuments) {
+				  let doc = searchDocuments[key];
+				this.add({
+					id: doc['action-uuid'],
+					title: doc.title,
+					path: doc.path,
+					content: doc.content
+				});  
+			  }
+			}));
+</script>
+</head>
+  <body>
+    <div class="container nsd-app-container">
+      <div class="row">
+        <div class="col nsd-app-header">
+          <a href="https://github.com/Nasdanika-Demos" data-nsd-label-uuid="dd26c88e-4202-49b4-8646-5d80392fad26" class="nsd-app-header-title">
+            <img src="https://docs.nasdanika.org/images/nasdanika-logo.png" class="nsd-app-label-icon">Nasdanika Demos</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col nsd-app-navbar">
+          <ul class="navbar navbar-light navbar-expand-lg">
+            <a href="../../../../index.html" data-nsd-label-uuid="1ba6779d-365d-4fa1-bb11-e85d52a53f91" class="navbar-brand">nsd</a>
+            <button type="button" data-toggle="collapse" data-target="#nsd_6p" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="nsd_6p" class="collapse navbar-collapse"></div>
+          </ul>
+        </div>
+      </div>
+      <div class="row nsd-app-content-row">
+        <div class="col nsd-app-navigation-panel">
+          <div class="nsd-collapse-panel bg-light text-center"><span data-toggle="collapse" data-target="#nsd-nav-panel-81cb7bbe-51d5-40cb-af6a-782fa4f4f2e5-collapsible" aria-expanded="true" aria-controls="nsd-nav-panel-81cb7bbe-51d5-40cb-af6a-782fa4f4f2e5-collapsible" title="Toggle panel" id="nsd-nav-panel-81cb7bbe-51d5-40cb-af6a-782fa4f4f2e5-collapsible-trigger" class="nsd-collapsible-trigger"><i aria-hidden="true" class="fa"></i></span>
+          </div>
+          <div id="nsd-nav-panel-81cb7bbe-51d5-40cb-af6a-782fa4f4f2e5-collapsible" style="clear:right" class="nsd-collapsible collapse show">
+            <input type="text" id="78484ace-ba99-4237-b2ac-727243c3f2fb-navigation-panel_searchInput" title="Full-text search. You can use wildcards, e.g. 'foo*' or 'f*o'; title or content fields, e.g. 'title:foo* bar'; boosts, e.g. 'foo^10 bar'; fuzzy matches, e.g. 'foo~1'; and term presence, e.g. '+foo bar -baz'" class="form-control mt-1">
+            <div id="78484ace-ba99-4237-b2ac-727243c3f2fb-navigation-panel"></div>
+            <script>$(document).ready( function() {
+$('#78484ace-ba99-4237-b2ac-727243c3f2fb-navigation-panel').jstree(function(tree) { tree.state.filter = function(state) { delete state.core.selected; return state; };  tree.search.search_callback = function(searchStr, node) { if (typeof window.nsdJsTreeSearchCallback === 'function') return window.nsdJsTreeSearchCallback(searchStr, node); var sf = new $.vakata.search(searchStr, true, { caseSensitive : false, fuzzy : false }); return sf.search(node.text).isMatch; }; return tree; }({"core":{"data":[{"a_attr":{"onclick":"window.location='../../../../app/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../../../app/site/index.html';"},"data-nsd-label-uuid":"1a28de56-69c3-488c-b5aa-dd7fd939909a","id":"nsd-app-nav-item-897d8714-f492-4880-b1a6-45b349f50bbd","text":"site","type":"leaf"}],"data-nsd-label-uuid":"1a6ebffc-da91-42da-98c4-0d5e77e9794c","id":"nsd-app-nav-item-f76af19d-9a9e-4467-8a17-6d60a66e7da7","text":"app"},{"a_attr":{"onclick":"window.location='../../../../drawio/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../../../drawio/html-app/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../../../drawio/html-app/save/index.html';"},"data-nsd-label-uuid":"04a92e63-1c6b-4047-90a0-517009f4b496","icon":"https://img.icons8.com/dusk/20/save--v1.png","id":"nsd-app-nav-item-f9167c5b-8957-4e1f-981e-a4699873e4ae","text":"save","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../../drawio/html-app/site/index.html';"},"data-nsd-label-uuid":"40eaabac-7e66-4751-8d4f-19b6166b7fc0","icon":"https://img.icons8.com/material-two-tone/20/web.png","id":"nsd-app-nav-item-36dbedb1-b9e2-4dc9-aa33-004339586cad","text":"site","type":"leaf"}],"data-nsd-label-uuid":"deae89dc-3f48-4918-b2df-91ca310cb1fe","id":"nsd-app-nav-item-45e25d5c-4463-460c-a537-5cb120675b6f","text":"html-app"}],"data-nsd-label-uuid":"3f8b686c-e092-4f92-ab83-a36b28e6c4e4","icon":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3QgeT0iMiIgeD0iMiIgd2lkdGg9IjI4IiByeD0iMS4xMiIgaGVpZ2h0PSIyOCIgZmlsbD0iI2YwODcwNSIvPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI2RmNmMwYyIgZD0ibTE2Ljg2MSA5LjE2OCAzLjAyLTMuMTg3IDEwLjExOSAxMC4xMTN2MTIuNzg2YTEuMTE5IDEuMTE5IDAgMCAxIC0xLjEyIDEuMTJoLTE3LjU2NGwtNS4zODUtNS40MDd6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTI1LjI0IDE3Ljk2aC0zLjI5NGwtMy4wNzEtNS4zMmguMmExLjExOSAxLjExOSAwIDAgMCAxLjEyLTEuMTJ2LTQuNzZhMS4xMTkgMS4xMTkgMCAwIDAgLTEuMTItMS4xMmgtNi4xNTVhMS4xMTkgMS4xMTkgMCAwIDAgLTEuMTIgMS4xMnY0Ljc2YTEuMTE5IDEuMTE5IDAgMCAwIDEuMTIgMS4xMmguMjA1bC0zLjA3MSA1LjMyaC0zLjI5NGExLjExOSAxLjExOSAwIDAgMCAtMS4xMiAxLjEydjQuNzZhMS4xMTkgMS4xMTkgMCAwIDAgMS4xMiAxLjEyaDYuMTZhMS4xMTkgMS4xMTkgMCAwIDAgMS4xMi0xLjEydi00Ljc2YTEuMTE5IDEuMTE5IDAgMCAwIC0xLjEyLTEuMTJoLS45MjdsMy4wNzItNS4zMmgxLjg3bDMuMDcxIDUuMzJoLS45MjZhMS4xMTkgMS4xMTkgMCAwIDAgLTEuMTIgMS4xMnY0Ljc2YTEuMTE5IDEuMTE5IDAgMCAwIDEuMTIgMS4xMmg2LjE2YTEuMTE5IDEuMTE5IDAgMCAwIDEuMTItMS4xMnYtNC43NmExLjExOSAxLjExOSAwIDAgMCAtMS4xMi0xLjEyeiIvPjwvc3ZnPg==","id":"nsd-app-nav-item-58900ed7-cc61-4f81-b19c-30031a35b1ed","text":"drawio"},{"a_attr":{"onclick":"window.location='../../../../exit/index.html';"},"data-nsd-label-uuid":"b790ec4c-6a80-4144-8aec-e8a03dcd4014","id":"nsd-app-nav-item-f992a05a-f80d-4757-898c-aa7f9364ae17","text":"exit","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../gsh/index.html';"},"data-nsd-label-uuid":"8590b8de-4781-4207-aa79-b22f261907b1","icon":"https://docs.nasdanika.org/images/command.svg","id":"nsd-app-nav-item-141a18d4-2b16-4943-b207-f50325076452","text":"gsh","type":"leaf"},{"a_attr":{"onclick":"window.location='../../invoke/index.html';"},"data-nsd-label-uuid":"05bf180d-04b9-4c1d-8a1f-6dfb69eb84ca","icon":"https://docs.nasdanika.org/images/optimization.svg","id":"nsd-app-nav-item-59f4a450-34c8-4352-9397-dd1fa9585a0b","text":"invoke","type":"leaf"},{"a_attr":{"onclick":"window.location='../../junit/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../junit/jacoco/index.html';"},"data-nsd-label-uuid":"c5023947-a276-41ae-8c51-a2534052ae5e","id":"nsd-app-nav-item-875dbbd9-5c96-4525-9da4-f2b2df49d17c","text":"jacoco","type":"leaf"}],"data-nsd-label-uuid":"3852c2d0-4480-405d-88d1-3f1bfc0a378d","icon":"https://docs.nasdanika.org/images/JUnit.svg","id":"nsd-app-nav-item-a384cf8f-ae5b-4f29-8bb3-8544ab144542","text":"junit"},{"a_attr":{"onclick":"window.location='../index.html';"},"children":[{"a_attr":{"onclick":"window.location='../demo/index.html';"},"data-nsd-label-uuid":"2d6ab9da-7533-4002-a1b3-46e8fd99f7fe","icon":"https://docs.nasdanika.org/images/demo.svg","id":"nsd-app-nav-item-a5b3bc04-f761-4e9c-bba6-6dd6ecb86657","text":"demo","type":"leaf"},{"data-nsd-label-uuid":"8e9ca33c-f072-48bb-97db-38da27902605","icon":"https://docs.nasdanika.org/images/java-script.svg","state":{"selected":true},"id":"nsd_72","text":"demo-analyze","type":"leaf"},{"a_attr":{"onclick":"window.location='../gsh/index.html';"},"data-nsd-label-uuid":"641b3f94-1698-45d2-a1c1-2d7c8a715917","icon":"https://docs.nasdanika.org/images/command.svg","id":"nsd-app-nav-item-437805a6-5ead-4ff5-aaa5-626f956af633","text":"gsh","type":"leaf"},{"a_attr":{"onclick":"window.location='../invoke/index.html';"},"data-nsd-label-uuid":"5984ac2d-2f58-4c99-a325-e151c37c7561","icon":"https://docs.nasdanika.org/images/optimization.svg","id":"nsd-app-nav-item-d89615be-beaa-4cf0-81bf-1537a4e081f9","text":"invoke","type":"leaf"}],"data-nsd-label-uuid":"04f7ae11-846f-429e-ac93-50d769d4058a","icon":"https://docs.nasdanika.org/images/retrospective.svg","id":"nsd-app-nav-item-ea37d37b-fb03-4dda-b04f-cd88760525cc","text":"retrospect"}],"data-nsd-label-uuid":"0c7e29ce-6d38-47d7-b027-51ca9ed6bd36","icon":"https://docs.nasdanika.org/images/jigsaw.svg","id":"nsd-app-nav-item-1b1f49ae-33fd-42f8-aebc-5e4385208d61","text":"contribute"},{"a_attr":{"onclick":"window.location='../../../gsh/index.html';"},"data-nsd-label-uuid":"8e279205-d89d-4461-b9e8-43f32c0aeaca","icon":"https://docs.nasdanika.org/images/command.svg","id":"nsd-app-nav-item-9cd58b26-791a-41f7-99ea-2d86a9882d9a","text":"gsh","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../invoke/index.html';"},"data-nsd-label-uuid":"6aeea2dd-7dbb-4452-b85c-1cc91fb59f11","icon":"https://docs.nasdanika.org/images/optimization.svg","id":"nsd-app-nav-item-ecdbebf4-f5fe-460d-88fd-99edb8ac6f58","text":"invoke","type":"leaf"}],"data-nsd-label-uuid":"35f68230-8aea-476d-9962-d7250278a6ac","icon":"https://docs.nasdanika.org/images/GitLab.svg","id":"nsd-app-nav-item-44ab6def-262d-4174-b06e-405ad73f909a","text":"gitlab"},{"a_attr":{"onclick":"window.location='../../../../gsh/index.html';"},"data-nsd-label-uuid":"333d2c73-2458-4512-9b1f-9a914ce53b9c","icon":"https://docs.nasdanika.org/images/command.svg","id":"nsd-app-nav-item-a50150e6-2c05-4144-b686-f6546105ee5d","text":"gsh","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../../help/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../../../help/site/index.html';"},"data-nsd-label-uuid":"418b4e77-40cf-4385-8701-9b1e2f134aee","id":"nsd-app-nav-item-5881a650-96fb-49e6-9d20-c426b8feedb6","text":"site","type":"leaf"}],"data-nsd-label-uuid":"ddfd1209-64db-4285-951e-7069d954edd3","id":"nsd-app-nav-item-87a6bf36-b2ba-48fa-8f8c-2b44961bc29b","text":"help"},{"a_attr":{"onclick":"window.location='../../../../http-server/index.html';"},"data-nsd-label-uuid":"7214b12f-81dc-4209-957b-da788042ca18","id":"nsd-app-nav-item-1a00605f-8a6e-40d5-bc2e-809d91f30a1a","text":"http-server","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../../inspect-yaml/index.html';"},"data-nsd-label-uuid":"eaaf6b6f-42a6-4105-90cf-063076efbd04","id":"nsd-app-nav-item-b98f61dd-5bb9-470b-ab07-16ef78302149","text":"inspect-yaml","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../../invoke/index.html';"},"data-nsd-label-uuid":"b547c001-5be6-4be2-a5ae-60e81c5b3bf4","icon":"https://docs.nasdanika.org/images/optimization.svg","id":"nsd-app-nav-item-55fcb29f-87ec-4b14-965f-1a07ec36078a","text":"invoke","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../../java/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../../../java/junit/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../../../java/junit/jacoco/index.html';"},"data-nsd-label-uuid":"5d55ca93-c683-4dde-b44e-2840a0dbc5d1","id":"nsd-app-nav-item-99af896d-7ed4-462c-9be8-e76428b254bd","text":"jacoco","type":"leaf"}],"data-nsd-label-uuid":"e52c12cb-6b4b-4997-95f6-9a3ebac94037","icon":"https://docs.nasdanika.org/images/JUnit.svg","id":"nsd-app-nav-item-0cec646f-d8a6-4559-9304-1080068202e3","text":"junit"}],"data-nsd-label-uuid":"ab9f881a-037b-46a0-8e62-c6fdc3945dc5","icon":"https://docs.nasdanika.org/images/java.svg","id":"nsd-app-nav-item-04d1bbf7-3086-4891-8599-b3de1e8f3a77","text":"java"},{"a_attr":{"onclick":"window.location='../../../../launcher/index.html';"},"data-nsd-label-uuid":"7860499d-14ac-4613-92b5-59867732080e","id":"nsd-app-nav-item-a95ae6bb-5af0-42ed-8dc5-f13f0adf4a50","text":"launcher","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../../list-inspectable-rules/index.html';"},"data-nsd-label-uuid":"d3db87e9-686e-4664-8dcc-be2b0ac96269","id":"nsd-app-nav-item-a8d40338-b0a0-42b6-9d88-43f4762531da","text":"list-inspectable-rules","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../../list-rules/index.html';"},"data-nsd-label-uuid":"fdc6fe7a-286d-43e8-a157-1edaeddcb52a","id":"nsd-app-nav-item-34aa60dd-d6a2-4376-a5dc-48d857f83e51","text":"list-rules","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../../model/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../../../model/ecore-html-app/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../../../model/ecore-html-app/save/index.html';"},"data-nsd-label-uuid":"bf682300-0ff3-48c9-b47e-9e83116cadac","icon":"https://img.icons8.com/dusk/20/save--v1.png","id":"nsd-app-nav-item-77c377fc-5c28-403d-a972-77a25ccf3edb","text":"save","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../../model/ecore-html-app/site/index.html';"},"data-nsd-label-uuid":"8cb399a0-0ca0-4909-87ca-662ab409be6a","icon":"https://img.icons8.com/material-two-tone/20/web.png","id":"nsd-app-nav-item-1d8faf8f-8857-426c-8f58-36c1c1e5c601","text":"site","type":"leaf"}],"data-nsd-label-uuid":"cd445ff7-545f-42ad-ad23-f006e6cb9f2b","id":"nsd-app-nav-item-7d27d7b3-9860-478a-b204-dfd971f480a0","text":"ecore-html-app"},{"a_attr":{"onclick":"window.location='../../../../model/html-app/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../../../model/html-app/save/index.html';"},"data-nsd-label-uuid":"10afd346-cbcd-4ecf-82d5-33f9a2deb076","icon":"https://img.icons8.com/dusk/20/save--v1.png","id":"nsd-app-nav-item-5909ce7a-8bd3-4fdb-80d1-077aa0236b2d","text":"save","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../../model/html-app/site/index.html';"},"data-nsd-label-uuid":"e054623a-eaac-4555-851f-0dc0eb91589b","icon":"https://img.icons8.com/material-two-tone/20/web.png","id":"nsd-app-nav-item-0e3a6879-396f-43f6-8ce5-ce36760afcf0","text":"site","type":"leaf"}],"data-nsd-label-uuid":"0f4bc832-8a65-4b34-81af-08c5ab389004","icon":"https://img.icons8.com/external-flatart-icons-outline-flatarticons/20/external-html-programming-and-coding-flatart-icons-outline-flatarticons-5.png","id":"nsd-app-nav-item-ca7526aa-69ec-41c0-9802-758d29129be0","text":"html-app"},{"a_attr":{"onclick":"window.location='../../../../model/save/index.html';"},"data-nsd-label-uuid":"0248fc95-ff8c-4c1b-b96f-b9353d31a40e","icon":"https://img.icons8.com/dusk/20/save--v1.png","id":"nsd-app-nav-item-8ceeae3d-e1f1-4ceb-b9ab-83d30f043228","text":"save","type":"leaf"}],"data-nsd-label-uuid":"df927644-aac6-414b-a346-c644a39fd1a0","id":"nsd-app-nav-item-b4eb8d5b-1807-4142-97dd-d4cf50806048","text":"model"},{"a_attr":{"onclick":"window.location='../../../../module-graph/index.html';"},"data-nsd-label-uuid":"2d4846ef-93dd-40b6-a32c-07b5d30b977b","id":"nsd-app-nav-item-e7c9f890-4d07-4cf5-9169-b30fa9217251","text":"module-graph","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../../rules/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../../../rules/action-model/index.html';"},"data-nsd-label-uuid":"9005d7ac-27bd-4403-8fba-3c8d3b04bb7c","id":"nsd-app-nav-item-579c6520-a951-40d2-8d03-9d10e083e84a","text":"action-model","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../../rules/list/index.html';"},"data-nsd-label-uuid":"f91253d5-3789-4f89-a1a5-c675cb5b70df","id":"nsd-app-nav-item-cb05044d-5539-494c-8f1a-534edf409338","text":"list","type":"leaf"},{"a_attr":{"onclick":"window.location='../../../../rules/site/index.html';"},"data-nsd-label-uuid":"744319eb-4d32-40e8-b8da-d5d7c63578f7","id":"nsd-app-nav-item-db37c140-b290-4f34-98d5-f320a049537c","text":"site","type":"leaf"}],"data-nsd-label-uuid":"be52deb8-4c13-4848-b7a8-e257acb45b5b","id":"nsd-app-nav-item-e60822b2-4864-4bfd-9ba3-b084f4ea4420","text":"rules"},{"a_attr":{"onclick":"window.location='../../../../shell/index.html';"},"data-nsd-label-uuid":"2ad1baef-3e39-4957-9f28-d145084ae5bc","icon":"https://img.icons8.com/nolan/20/console.png","id":"nsd-app-nav-item-a1eb8949-8eba-4cd3-ae80-b92142ba643f","text":"shell","type":"leaf"}]},"search":{"show_only_matches":true,"show_only_matches_children":true},"types":{"leaf":{"icon":"jstree-file"}},"plugins":["state","type","search"],"state":{"key":"78484ace-ba99-4237-b2ac-727243c3f2fb-navigation-panel"}}));
+// Tokens: searchInputSelector, timer, treeSelector
+$('#78484ace-ba99-4237-b2ac-727243c3f2fb-navigation-panel_searchInput').keyup(function () {
+    if (window['nsd_jstTreeSearchTimer_nsd_80']) { 
+		clearTimeout(window['nsd_jstTreeSearchTimer_nsd_80']); 
+	}
+    window['nsd_jstTreeSearchTimer_nsd_80'] = setTimeout(function () {
+      var v = $('#78484ace-ba99-4237-b2ac-727243c3f2fb-navigation-panel_searchInput').val();
+      $('#78484ace-ba99-4237-b2ac-727243c3f2fb-navigation-panel').jstree(true).search(v);
+    }, 250);
+  });
+
+});</script>
+          </div>
+        </div>
+        <div data-nsd-label-uuid="8e9ca33c-f072-48bb-97db-38da27902605" data-nsd-action-uris="uuid:8e9ca33c-f072-48bb-97db-38da27902605" class="col nsd-app-content-panel">
+          <div class="container-fluid">
+            <div class="row nsd-app-content-panel-breadcrumb-row">
+              <div class="col">
+                <nav aria-label="breadcrumb" class="nsd-app-content-panel-breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="../../../index.html" data-nsd-label-uuid="35f68230-8aea-476d-9962-d7250278a6ac">
+                        <img src="https://docs.nasdanika.org/images/GitLab.svg" class="nsd-app-label-icon">gitlab</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                      <a href="../../index.html" data-nsd-label-uuid="0c7e29ce-6d38-47d7-b027-51ca9ed6bd36">
+                        <img src="https://docs.nasdanika.org/images/jigsaw.svg" class="nsd-app-label-icon">contribute</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                      <a href="../index.html" data-nsd-label-uuid="04f7ae11-846f-429e-ac93-50d769d4058a">
+                        <img src="https://docs.nasdanika.org/images/retrospective.svg" class="nsd-app-label-icon">retrospect</a>
+                    </li>
+                    <li class="breadcrumb-item active"><span data-nsd-label-uuid="8e9ca33c-f072-48bb-97db-38da27902605"><img src="https://docs.nasdanika.org/images/java-script.svg" class="nsd-app-label-icon">demo-analyze</span>
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <div class="row nsd-app-content-panel-title-and-items-row">
+              <div class="col-auto">
+                <h1><span data-nsd-label-uuid="8e9ca33c-f072-48bb-97db-38da27902605" class="nsd-app-content-panel-title"><img src="https://docs.nasdanika.org/images/java-script.svg" class="nsd-app-label-icon">demo-analyze</span>
+                </h1>
+              </div>
+            </div>
+            <div class="row nsd-app-content-panel-content-row">
+              <div class="col">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col"><pre style="padding:5px;width:max-content">
+Usage: nsd gitlab contribute retrospect demo-analyze [-hV] [--progress-console]
+       [--progress-data] [--progress-json] [-p=&lt;pom&gt;]
+       [--progress-output=&lt;progressOutput&gt;]
+Demo source analysis command
+  -h, --help               Show this help message and exit.
+  -p, --pom=&lt;pom&gt;          Pom file, defaults to pom.xml
+      --progress-console   Output progress to console
+      --progress-data      Output progress data
+      --progress-json      Output progress in JSON
+      --progress-output=&lt;progressOutput&gt;
+                           Output file for progress monitor
+  -V, --version            Print version information and exit.
+</pre>
+<div class="markdown-body">
+
+</div>
+</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
