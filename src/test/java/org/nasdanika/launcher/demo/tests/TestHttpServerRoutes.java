@@ -59,7 +59,7 @@ public class TestHttpServerRoutes {
 				"processor") {
 
 			/**
-			 * This override is needed to collect processors implementing {@link AutoCloseable}
+			 * This override is needed to collect processors implementing {@link Component}
 			 */
 			@Override
 			protected Object doCreateProcessor(
@@ -99,7 +99,6 @@ public class TestHttpServerRoutes {
 				.route(routes -> HttpServerRouteBuilder.buildRoutes(processors.values(), "route", routes))
 				.bindNow();
 		
-//		server.onDispose().block();
         try (Terminal terminal = TerminalBuilder.builder().system(true).build()) {
         	LineReader lineReader = LineReaderBuilder
         			.builder()
@@ -135,7 +134,6 @@ public class TestHttpServerRoutes {
 				component.close(progressMonitor);
 			}
 		});
-
 	}
 
 }

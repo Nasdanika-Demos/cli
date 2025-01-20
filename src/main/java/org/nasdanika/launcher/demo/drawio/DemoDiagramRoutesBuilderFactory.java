@@ -8,7 +8,9 @@ public class DemoDiagramRoutesBuilderFactory extends DiagramRoutesBuilderFactory
 
 	public DemoDiagramRoutesBuilderFactory() {
 		super(
-				URI.createURI("system.drawio").resolve(Util.createClassURI(DemoDiagramRoutesBuilderFactory.class)), 
+				URI
+					.createURI("system.drawio")
+					.resolve(Util.createClassURI(DemoDiagramRoutesBuilderFactory.class)), 
 				"processor", 
 				"route");
 	}
