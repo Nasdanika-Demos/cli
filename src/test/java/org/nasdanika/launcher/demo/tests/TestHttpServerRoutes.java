@@ -136,4 +136,51 @@ public class TestHttpServerRoutes {
 		});
 	}
 
+	@Test
+	@Disabled
+	public void testDrawioRoutesSimple() throws Exception {
+		Document document = Document.load(
+				URI.createFileURI(new File("test-data/drawio-http/diagram.drawio").getCanonicalPath()), 
+				null, 
+				null);
+		
+		ElementProcessorFactory<Object> elementProcessorFactory = new ElementProcessorFactory<Object>(
+				document, 
+				new CapabilityLoader(), 
+				"processor");
+			
+		ProgressMonitor progressMonitor = new PrintStreamProgressMonitor();
+		
+		Map<Element, ProcessorInfo<Object>> processors = elementProcessorFactory.createProcessors(
+				null, 
+				null, 
+				progressMonitor);
+		
+		DisposableServer server = HttpServer
+				.create()
+				.port(8080)
+				.route(routes -> HttpServerRouteBuilder.buildRoutes(processors.values(), "route", routes))
+				.bindNow();
+		
+        try (Terminal terminal = TerminalBuilder.builder().system(true).build()) {
+        	LineReader lineReader = LineReaderBuilder
+        			.builder()
+                    .terminal(terminal)
+                    .build();
+        	
+        	String prompt = "http-server>";
+            while (true) {
+                String line = null;
+                line = lineReader.readLine(prompt);
+                System.out.println("Got: " + line);
+                if ("exit".equals(line)) {
+                	break;
+                }
+            }
+        }
+        
+        server.dispose();
+        server.onDispose().block();
+	}
+	
 }
