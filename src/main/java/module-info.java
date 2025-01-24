@@ -8,6 +8,7 @@ import org.nasdanika.launcher.demo.rules.InspectYamlCommandFactory;
 import org.nasdanika.launcher.demo.rules.ListInspectableRulesCommandFactory;
 import org.nasdanika.launcher.demo.rules.ListRulesCommandFactory;
 import org.nasdanika.launcher.demo.rules.inspectors.ReflectiveInspectorFactory;
+import org.nasdanika.launcher.demo.http.DemoReflectiveHttpRoutesFactory;
 
 module org.nasdanika.launcher.demo {
 	
@@ -26,6 +27,7 @@ module org.nasdanika.launcher.demo {
 	opens org.nasdanika.launcher.demo.rules; // to info.picocli, org.nasdanika.common;
 	opens org.nasdanika.launcher.demo.rules.inspectors to org.nasdanika.common; // For inspector reflection
 	opens org.nasdanika.launcher.demo.drawio; // For processor instantiation and resource loading
+	opens org.nasdanika.launcher.demo.http to org.nasdanika.common; // For inspector reflection
 	
 	provides CapabilityFactory with 
 		InspectYamlCommandFactory,
@@ -36,5 +38,6 @@ module org.nasdanika.launcher.demo {
 		DemoRuleSetCapabilityFactory,
 		GitLabDemoRetrospectCommandFactory,
 		DemoMavenSourceAnalysisCommandFactory,
-		DemoDiagramRoutesBuilderFactory;		
+		DemoDiagramRoutesBuilderFactory,
+		DemoReflectiveHttpRoutesFactory;		
 }
