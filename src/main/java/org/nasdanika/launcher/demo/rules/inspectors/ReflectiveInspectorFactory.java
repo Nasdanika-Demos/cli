@@ -1,11 +1,9 @@
 package org.nasdanika.launcher.demo.rules.inspectors;
 
 import java.util.concurrent.CompletionStage;
-import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 import org.nasdanika.capability.CapabilityProvider;
-import org.nasdanika.capability.CapabilityFactory.Loader;
 import org.nasdanika.common.ProgressMonitor;
 import org.nasdanika.models.rules.Inspector;
 import org.nasdanika.models.rules.InspectorCapabilityFactory;

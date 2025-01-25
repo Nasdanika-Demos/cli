@@ -26,6 +26,7 @@ import org.nasdanika.graph.processor.ProcessorInfo;
 import org.nasdanika.http.HttpServerRouteBuilder;
 import org.nasdanika.http.ReflectiveHttpServerRouteBuilder;
 import org.nasdanika.launcher.demo.http.DemoReflectiveHttpRoutes;
+import org.nasdanika.launcher.demo.http.ReflectorSuperFactory;
 
 import reactor.netty.DisposableServer;
 import reactor.netty.http.server.HttpServer;
@@ -186,10 +187,90 @@ public class TestHttpServerRoutes {
 	}
 
 	@Test
-//	@Disabled
+	@Disabled
+	public void testDrawioRouteBuilder() throws Exception {
+		Document document = Document.load(
+				URI.createFileURI(new File("test-data/drawio-http/route-builder.drawio").getCanonicalPath()), 
+				null, 
+				null);
+		
+		ElementProcessorFactory<Object> elementProcessorFactory = new ElementProcessorFactory<Object>(
+				document, 
+				new CapabilityLoader(), 
+				"processor");
+			
+		ProgressMonitor progressMonitor = new PrintStreamProgressMonitor();
+		
+		Map<Element, ProcessorInfo<Object>> processors = elementProcessorFactory.createProcessors(
+				null, 
+				null, 
+				progressMonitor);
+		
+		DisposableServer server = HttpServer
+				.create()
+				.port(8080)
+				.route(routes -> HttpServerRouteBuilder.buildRoutes(processors.values(), "route", routes))
+				.bindNow();
+		
+        try (Terminal terminal = TerminalBuilder.builder().system(true).build()) {
+        	LineReader lineReader = LineReaderBuilder
+        			.builder()
+                    .terminal(terminal)
+                    .build();
+        	
+        	String prompt = "http-server>";
+            while (true) {
+                String line = null;
+                line = lineReader.readLine(prompt);
+                System.out.println("Got: " + line);
+                if ("exit".equals(line)) {
+                	break;
+                }
+            }
+        }
+        
+        server.dispose();
+        server.onDispose().block();
+	}
+
+	@Test
+	@Disabled
 	public void testReflectiveRoutesBuilder() throws Exception {
 		ReflectiveHttpServerRouteBuilder builder = new ReflectiveHttpServerRouteBuilder();
 		builder.addTargets("/reflective", new DemoReflectiveHttpRoutes());
+		
+		DisposableServer server = HttpServer
+				.create()
+				.port(8080)
+				.route(builder::buildRoutes)
+				.bindNow();
+		
+        try (Terminal terminal = TerminalBuilder.builder().system(true).build()) {
+        	LineReader lineReader = LineReaderBuilder
+        			.builder()
+                    .terminal(terminal)
+                    .build();
+        	
+        	String prompt = "http-server>";
+            while (true) {
+                String line = null;
+                line = lineReader.readLine(prompt);
+                System.out.println("Got: " + line);
+                if ("exit".equals(line)) {
+                	break;
+                }
+            }
+        }
+        
+        server.dispose();
+        server.onDispose().block();
+	}
+
+	@Test
+//	@Disabled
+	public void testReflectorFactory() throws Exception {
+		ReflectiveHttpServerRouteBuilder builder = new ReflectiveHttpServerRouteBuilder();
+		builder.addTargets("/reflective", new ReflectorSuperFactory());
 		
 		DisposableServer server = HttpServer
 				.create()

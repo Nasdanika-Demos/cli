@@ -1,11 +1,14 @@
 package org.nasdanika.launcher.demo.http;
 
+import org.nasdanika.http.HttpServerRouteBuilder;
 import org.nasdanika.http.ReflectiveHttpServerRouteBuilder.Route;
+import org.nasdanika.http.ReflectiveHttpServerRouteBuilder.RouteBuilder;
 import org.reactivestreams.Publisher;
 
 import reactor.core.publisher.Mono;
 import reactor.netty.http.server.HttpServerRequest;
 import reactor.netty.http.server.HttpServerResponse;
+import reactor.netty.http.server.HttpServerRoutes;
 
 @Route("/test/")
 public class DemoReflectiveHttpRoutes {
@@ -43,5 +46,22 @@ public class DemoReflectiveHttpRoutes {
 			HttpServerResponse response) {
 		return response.sendString(Mono.just("do someting"));
 	}
+	
+	@RouteBuilder("field-route-builder")
+	public HttpServerRouteBuilder routeBuilder = routes -> {
+		routes.get("/hello", (request, response) -> response.sendString(Mono.just("Hello from field route builder!")));				
+	};
+
+	@RouteBuilder("getter-route-builder")
+	public HttpServerRouteBuilder getRouteBuilder() {
+		return  routes -> {
+			routes.get("/hello", (request, response) -> response.sendString(Mono.just("Hello from getter route builder!")));
+		};
+	};	
+
+	@RouteBuilder("route-builder-method")
+	public void buildRoutes(HttpServerRoutes routes) {
+		routes.get("/hello", (request, response) -> response.sendString(Mono.just("Hello from route builder method!")));
+	};	
 	
 }
