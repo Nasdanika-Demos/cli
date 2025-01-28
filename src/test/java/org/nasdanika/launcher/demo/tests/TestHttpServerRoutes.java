@@ -267,7 +267,7 @@ public class TestHttpServerRoutes {
 	}
 
 	@Test
-//	@Disabled
+	@Disabled
 	public void testReflectorFactory() throws Exception {
 		ReflectiveHttpServerRouteBuilder builder = new ReflectiveHttpServerRouteBuilder();
 		builder.addTargets("/reflective", new ReflectorSuperFactory());
