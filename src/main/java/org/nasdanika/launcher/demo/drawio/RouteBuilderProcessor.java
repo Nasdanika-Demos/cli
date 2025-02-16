@@ -53,7 +53,6 @@ public class RouteBuilderProcessor implements HttpServerRouteBuilder {
 			Consumer<CompletionStage<?>> endpointWiringStageConsumer,
 			ProgressMonitor wiringProgressMonitor) {
 		
-		System.out.println("I got constructed " + this);
 	}
 
 	@Override

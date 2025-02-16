@@ -54,8 +54,7 @@ public class SystemHttpHandler implements BiFunction<HttpServerRequest, HttpServ
 			BiConsumer<Element, BiConsumer<ProcessorInfo<Invocable>, ProgressMonitor>> infoProvider,
 			Consumer<CompletionStage<?>> endpointWiringStageConsumer,
 			ProgressMonitor wiringProgressMonitor) {
-		
-		System.out.println("I got constructed " + this);
+
 	}
 
 	@Override
