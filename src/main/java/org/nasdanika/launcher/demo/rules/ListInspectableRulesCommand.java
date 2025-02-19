@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EObject;
 import org.nasdanika.capability.CapabilityLoader;
+import org.nasdanika.cli.Description;
 import org.nasdanika.cli.ParentCommands;
 import org.nasdanika.cli.RootCommand;
 import org.nasdanika.common.NasdanikaException;
@@ -35,6 +36,7 @@ public class ListInspectableRulesCommand extends AbstractInspectorCommand {
 		this.capabilityLoader = capabilityLoader;
 	}
 	
+	@Description(value = "Test option documentation")
 	@Option(names = {"-o", "--output"}, description = "Output file")
 	private File output;	
 
