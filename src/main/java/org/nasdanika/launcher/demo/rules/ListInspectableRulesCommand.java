@@ -36,7 +36,7 @@ public class ListInspectableRulesCommand extends AbstractInspectorCommand {
 		this.capabilityLoader = capabilityLoader;
 	}
 	
-	@Description(value = "Test option documentation")
+	@Description(value = "Test <B>option</B>  documentation", format = "html")
 	@Option(names = {"-o", "--output"}, description = "Output file")
 	private File output;	
 
