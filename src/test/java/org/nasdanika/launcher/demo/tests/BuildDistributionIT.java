@@ -43,6 +43,7 @@ public class BuildDistributionIT {
 //				"-r", "org.nasdanika.**,com.azure.**,io.netty.**",
 				"-b", "target/dist", 
 				"-M", "target/dist/modules", 
+				"-p", ";",
 				"-o", "nsd-demo.bat");
 		
 		launcherCommandLine.execute(
@@ -53,6 +54,7 @@ public class BuildDistributionIT {
 //				"-r", "org.nasdanika.**,com.azure.**,io.netty.**",
 				"-b", "target/dist", 
 				"-M", "target/dist/modules", 
+				"-p", ";",
 				"-o", "nsd-demo-debug.bat");
 		
 		launcherCommandLine.execute(

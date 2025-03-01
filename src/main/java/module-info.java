@@ -1,5 +1,6 @@
 import org.nasdanika.capability.CapabilityFactory;
 import org.nasdanika.launcher.demo.GitLabDemoRetrospectCommandFactory;
+import org.nasdanika.launcher.demo.IAnnotatedElementProviderTestCommandFactory;
 import org.nasdanika.launcher.demo.ModuleGraphCommandFactory;
 import org.nasdanika.launcher.demo.drawio.DemoDiagramRoutesBuilderFactory;
 import org.nasdanika.launcher.demo.java.DemoMavenSourceAnalysisCommandFactory;
@@ -21,6 +22,7 @@ module org.nasdanika.launcher.demo {
 	requires org.nasdanika.models.java.cli;
 	requires reactor.netty.http;
 	requires org.nasdanika.http;
+	requires org.nasdanika.cli;
 	
 	opens org.nasdanika.launcher.demo to info.picocli;
 	opens org.nasdanika.launcher.demo.java to info.picocli;
@@ -39,5 +41,6 @@ module org.nasdanika.launcher.demo {
 		GitLabDemoRetrospectCommandFactory,
 		DemoMavenSourceAnalysisCommandFactory,
 		DemoDiagramRoutesBuilderFactory,
+		IAnnotatedElementProviderTestCommandFactory,
 		DemoReflectiveHttpRoutesFactory;		
 }
