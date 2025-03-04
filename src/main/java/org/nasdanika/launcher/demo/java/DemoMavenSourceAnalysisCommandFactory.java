@@ -5,9 +5,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 import org.nasdanika.capability.CapabilityFactory;
-import org.nasdanika.cli.Description;
 import org.nasdanika.cli.ParentCommands;
 import org.nasdanika.cli.SubCommandCapabilityFactory;
+import org.nasdanika.common.Description;
 import org.nasdanika.common.ProgressMonitor;
 import org.nasdanika.models.gitlab.cli.GitLabContributorCommand;
 

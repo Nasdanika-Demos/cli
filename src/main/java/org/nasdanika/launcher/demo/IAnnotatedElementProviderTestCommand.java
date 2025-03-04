@@ -2,11 +2,13 @@ package org.nasdanika.launcher.demo;
 
 import java.io.File;
 
-import org.nasdanika.cli.Description;
 import org.nasdanika.cli.ParentCommands;
+import org.nasdanika.cli.ProgressMonitorMixIn;
 import org.nasdanika.cli.RootCommand;
+import org.nasdanika.common.Description;
 
 import picocli.CommandLine.Command;
+import picocli.CommandLine.Mixin;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
@@ -32,7 +34,10 @@ public class IAnnotatedElementProviderTestCommand {
 		
         @Parameters(paramLabel = "<file>") 
 		@Description("File detailed description")
-		File[] files) {
+		File[] files,
+		
+    	@Mixin
+    	ProgressMonitorMixIn progressMonitorMixin) {
         // ... implement business logic
     }       
 }

@@ -9,9 +9,9 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EObject;
 import org.nasdanika.capability.CapabilityLoader;
-import org.nasdanika.cli.Description;
 import org.nasdanika.cli.ParentCommands;
 import org.nasdanika.cli.RootCommand;
+import org.nasdanika.common.Description;
 import org.nasdanika.common.NasdanikaException;
 import org.nasdanika.common.ProgressMonitor;
 import org.nasdanika.common.Util;
