@@ -36,7 +36,7 @@ public class BuildDistributionIT {
 		
 		CommandLine launcherCommandLine = new CommandLine(new LauncherCommand());
 		launcherCommandLine.execute(
-				"-j", "@java -Dotel.sdk.disabled=true",
+				"-j", "@java",
 				"-m", "org.nasdanika.launcher",
 				"-c", "org.nasdanika.launcher.Launcher",
 				"-f", "options",
@@ -49,7 +49,7 @@ public class BuildDistributionIT {
 		launcherCommandLine.execute(
 				"-m", "org.nasdanika.launcher",
 				"-c", "org.nasdanika.launcher.Launcher",
-				"-j", "@java -Dotel.sdk.disabled=true -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y",
+				"-j", "@java -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y",
 				"-f", "options",
 //				"-r", "org.nasdanika.**,com.azure.**,io.netty.**",
 				"-b", "target/dist", 
