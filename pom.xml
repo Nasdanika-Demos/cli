@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.nasdanika.demos</groupId>
-	<version>2025.3.0</version>
+	<version>2025.4.0</version>
 	<artifactId>cli</artifactId>
 	<packaging>jar</packaging>
 	<name>Nasdanika demo command line interface</name>
@@ -12,27 +12,27 @@
 		<dependency>
 			<groupId>org.nasdanika</groupId>
 			<artifactId>cli-launcher</artifactId>
-			<version>2025.3.0</version>
+			<version>2025.4.0</version>
 		</dependency>
 		<dependency>			
 			<groupId>org.nasdanika.models.echarts</groupId>
-			<version>2025.3.0</version>
+			<version>2025.4.0</version>
 			<artifactId>graph</artifactId>
 		</dependency>				
 		<dependency>			
 			<groupId>org.nasdanika.models.ecore</groupId>
 			<artifactId>cli</artifactId>
-			<version>2025.3.0</version>
+			<version>2025.4.0</version>
 		</dependency>
 		<dependency>			
 			<groupId>org.nasdanika.models.gitlab</groupId>
 			<artifactId>cli</artifactId>
-			<version>2025.3.0</version>
+			<version>2025.4.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.nasdanika.models.app</groupId>
 			<artifactId>model</artifactId>
-			<version>2025.3.0</version>
+			<version>2025.4.0</version>
 		</dependency>
 
 		<!-- To prevent slf4j complaining -->
@@ -46,15 +46,23 @@
 		<dependency>
 		    <groupId>org.junit.jupiter</groupId>
 		    <artifactId>junit-jupiter-api</artifactId>
-		    <version>5.11.4</version>
+		    <version>5.12.2</version>
 		    <scope>test</scope>
 		</dependency>		
 		<dependency>
 		    <groupId>org.junit.jupiter</groupId>
 		    <artifactId>junit-jupiter-engine</artifactId>
-		    <version>5.11.4</version>
+		    <version>5.12.2</version>
 		    <scope>test</scope>
 		</dependency>
+		<!--
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-engine</artifactId>
+            <version>1.11.4</version>
+            <scope>test</scope>
+        </dependency>
+		-->
 	</dependencies>
 
 	<build>
@@ -83,8 +91,21 @@
 			</plugin>
 		        <plugin>
 		            <groupId>org.apache.maven.plugins</groupId>
+		            <artifactId>maven-surefire-plugin</artifactId>
+		            <version>3.5.3</version>
+		            <dependencies>
+		                <dependency>
+		                    <groupId>org.junit.jupiter</groupId>
+		                    <artifactId>junit-jupiter-engine</artifactId>
+		                    <version>5.12.2</version>
+		                </dependency>
+		            </dependencies>
+		        </plugin>
+
+		        <plugin>
+		            <groupId>org.apache.maven.plugins</groupId>
 	        	    <artifactId>maven-failsafe-plugin</artifactId>
-		            <version>3.5.2</version>
+		            <version>3.5.3</version>
 				    <executions>
 				        <execution>
 				            <goals>
@@ -93,7 +114,15 @@
 			        	    </goals>
 				        </execution>
 				    </executions>
+		            <dependencies>
+		                <dependency>
+		                    <groupId>org.junit.jupiter</groupId>
+		                    <artifactId>junit-jupiter-engine</artifactId>
+		                    <version>5.12.2</version>
+		                </dependency>
+		            </dependencies>
 		        </plugin>
+
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>3.7.1</version>
