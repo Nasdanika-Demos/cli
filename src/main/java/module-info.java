@@ -2,14 +2,18 @@ import org.nasdanika.capability.CapabilityFactory;
 import org.nasdanika.launcher.demo.GitLabDemoRetrospectCommandFactory;
 import org.nasdanika.launcher.demo.IAnnotatedElementProviderTestCommandFactory;
 import org.nasdanika.launcher.demo.ModuleGraphCommandFactory;
+import org.nasdanika.launcher.demo.ai.EnvironmentVariableKeyCredentialCapabilityFactory;
+import org.nasdanika.launcher.demo.ai.OpenAIAdaEmbeddingsCapabilityFactory;
+import org.nasdanika.launcher.demo.ai.OpenAIGpt4oChatCapabilityFactory;
+import org.nasdanika.launcher.demo.ai.PdfIndexerCommandFactory;
 import org.nasdanika.launcher.demo.drawio.DemoDiagramRoutesBuilderFactory;
+import org.nasdanika.launcher.demo.http.DemoReflectiveHttpRoutesFactory;
 import org.nasdanika.launcher.demo.java.DemoMavenSourceAnalysisCommandFactory;
 import org.nasdanika.launcher.demo.rules.DemoRuleSetCapabilityFactory;
 import org.nasdanika.launcher.demo.rules.InspectYamlCommandFactory;
 import org.nasdanika.launcher.demo.rules.ListInspectableRulesCommandFactory;
 import org.nasdanika.launcher.demo.rules.ListRulesCommandFactory;
 import org.nasdanika.launcher.demo.rules.inspectors.ReflectiveInspectorFactory;
-import org.nasdanika.launcher.demo.http.DemoReflectiveHttpRoutesFactory;
 
 module org.nasdanika.launcher.demo {
 	
@@ -27,6 +31,9 @@ module org.nasdanika.launcher.demo {
 	requires org.nasdanika.models.rules.cli;
 	requires org.nasdanika.models.architecture;
 	requires org.nasdanika.models.ecore.cli;
+	requires org.nasdanika.ai.cli;
+	requires org.nasdanika.models.pdf;
+	requires org.nasdanika.ai.openai;
 	
 	opens org.nasdanika.launcher.demo to info.picocli;
 	opens org.nasdanika.launcher.demo.java to info.picocli;
@@ -34,8 +41,10 @@ module org.nasdanika.launcher.demo {
 	opens org.nasdanika.launcher.demo.rules.inspectors to org.nasdanika.common; // For inspector reflection
 	opens org.nasdanika.launcher.demo.drawio; // For processor instantiation and resource loading
 	opens org.nasdanika.launcher.demo.http to org.nasdanika.common; // For inspector reflection
+	opens org.nasdanika.launcher.demo.ai;
 	
 	provides CapabilityFactory with 
+		EnvironmentVariableKeyCredentialCapabilityFactory,
 		InspectYamlCommandFactory,
 		ReflectiveInspectorFactory,
 		ModuleGraphCommandFactory,
@@ -46,5 +55,8 @@ module org.nasdanika.launcher.demo {
 		DemoMavenSourceAnalysisCommandFactory,
 		DemoDiagramRoutesBuilderFactory,
 		IAnnotatedElementProviderTestCommandFactory,
-		DemoReflectiveHttpRoutesFactory;		
+		DemoReflectiveHttpRoutesFactory,
+		OpenAIAdaEmbeddingsCapabilityFactory,
+		OpenAIGpt4oChatCapabilityFactory,
+		PdfIndexerCommandFactory;		
 }

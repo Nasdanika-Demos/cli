@@ -29,11 +29,26 @@
 			<artifactId>cli</artifactId>
 			<version>2025.4.0</version>
 		</dependency>
+        <dependency>            
+            <groupId>org.nasdanika.ai</groupId>
+            <artifactId>cli</artifactId>
+            <version>2025.4.0</version>
+        </dependency>
+        <dependency>            
+            <groupId>org.nasdanika.ai</groupId>
+            <artifactId>openai</artifactId>
+            <version>2025.4.0</version>
+        </dependency>
 		<dependency>
 			<groupId>org.nasdanika.models.app</groupId>
 			<artifactId>model</artifactId>
 			<version>2025.4.0</version>
 		</dependency>
+        <dependency>
+            <groupId>org.nasdanika.models.pdf</groupId>
+            <artifactId>model</artifactId>
+            <version>2025.4.0</version>
+        </dependency>
 
 		<!-- To prevent slf4j complaining -->
 		<!--
