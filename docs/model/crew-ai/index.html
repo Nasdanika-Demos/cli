@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="EN">
+  <head>
+    <title>crew-ai</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/simplex/bootstrap.min.css" id="nsd-bootstrap-theme-stylesheet"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Nasdanika-Models/html-app@master/gen/web-resources/css/app.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jstree@3.3.11/dist/themes/default/style.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/styles/default.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-vue@2.21.2/dist/bootstrap-vue.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/Nasdanika-Models/html-app@master/gen/web-resources/js/common.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Nasdanika-Models/html-app@master/gen/web-resources/js/dark-head.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jstree@3.3.11/dist/jstree.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-vue@2.21.2/dist/bootstrap-vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Nasdanika-Models/html-app@master/gen/web-resources/js/components/table.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<!--  Start search configuration -->
+<script src="../../search-documents.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/olivernn/lunr.js@v2.3.9/lunr.js"></script>
+
+<script>
+// Script for full-text search of JsTree
+
+window.nsdJsTreeSearchCallback = function(str, node) { 
+    var sf = new $.vakata.search(str, true, { caseSensitive : false, fuzzy : false }); 
+    if (sf.search(node.text).isMatch) {
+		return true;
+	} 
+    let searchResult = this.search(str); 
+    for (const sr in searchResult) {
+        if (searchResult[sr].ref === node.original['data-nsd-label-uuid']) {
+            return true;
+        } 
+    } 
+    return false; 
+}.bind(lunr(function () {
+			  this.ref('id');
+			  this.field('title');
+			  this.field('content');
+
+			  for (const key in searchDocuments) {
+				  let doc = searchDocuments[key];
+				this.add({
+					id: doc['link-uuid'],
+					title: doc.title,
+					path: doc.path,
+					content: doc.content
+				});  
+			  }
+			}));
+</script>
+<!-- End search configuration  -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9BRJVLK8CC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9BRJVLK8CC');
+</script>    
+</head>
+  <body>
+    <div class="container nsd-app-container">
+      <div class="row">
+        <div class="col nsd-app-header">
+          <a href="https://github.com/Nasdanika-Demos" data-nsd-label-uuid="6f8c4b0d-bc50-4c50-b0a9-e4bbb805f51d" class="nsd-app-header-title">
+            <img src="https://docs.nasdanika.org/images/nasdanika-logo.png" class="nsd-app-label-icon"/>Nasdanika Demos</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col nsd-app-navbar">
+          <ul class="navbar navbar-light navbar-expand-lg">
+            <a href="../../index.html" data-nsd-label-uuid="f6831e65-326f-4feb-a25c-dcf26fa24d5f" class="navbar-brand">nsd</a>
+            <button type="button" data-toggle="collapse" data-target="#nsd_1l1" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="nsd_1l1" class="collapse navbar-collapse"></div>
+          </ul>
+        </div>
+      </div>
+      <div class="row nsd-app-content-row">
+        <div class="col nsd-app-navigation-panel">
+          <div class="nsd-collapse-panel bg-light text-center"><span data-toggle="collapse" data-target="#nsd-nav-panel-bf6a6f60-a461-4646-8059-768dbdd71866-collapsible" aria-expanded="true" aria-controls="nsd-nav-panel-bf6a6f60-a461-4646-8059-768dbdd71866-collapsible" title="Toggle panel" id="nsd-nav-panel-bf6a6f60-a461-4646-8059-768dbdd71866-collapsible-trigger" class="nsd-collapsible-trigger"><i aria-hidden="true" class="fa"></i></span>
+          </div>
+          <div id="nsd-nav-panel-bf6a6f60-a461-4646-8059-768dbdd71866-collapsible" style="clear:right" class="nsd-collapsible collapse show">
+            <input type="text" id="b1c173f2-7ee4-418a-ba30-e099236ed88a-navigation-panel_searchInput" title="Full-text search. You can use wildcards, e.g. 'foo*' or 'f*o'; title or content fields, e.g. 'title:foo* bar'; boosts, e.g. 'foo^10 bar'; fuzzy matches, e.g. 'foo~1'; and term presence, e.g. '+foo bar -baz'" class="form-control mt-1"/>
+            <div id="b1c173f2-7ee4-418a-ba30-e099236ed88a-navigation-panel"></div>
+            <script>$(document).ready( function() {
+$('#b1c173f2-7ee4-418a-ba30-e099236ed88a-navigation-panel').jstree(function(tree) { tree.state.filter = function(state) { delete state.core.selected; return state; };  tree.search.search_callback = function(searchStr, node) { if (typeof window.nsdJsTreeSearchCallback === 'function') return window.nsdJsTreeSearchCallback(searchStr, node); var sf = new $.vakata.search(searchStr, true, { caseSensitive : false, fuzzy : false }); return sf.search(node.text).isMatch; }; return tree; }({"core":{"data":[{"a_attr":{"onclick":"window.location='../../annotated-element-provider-test/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../annotated-element-provider-test/commit/index.html';"},"data-nsd-label-uuid":"fa1dd375-2508-4a44-8f86-bbe48343dd8a","id":"nsd-app-nav-item-82a45ba2-9df6-4de0-8406-c1dff533d24f","text":"commit","type":"leaf"}],"data-nsd-label-uuid":"be22507d-1dfd-418b-b0ea-265193f15b97","id":"nsd-app-nav-item-88e37068-e448-4457-9c8f-4673c9488778","text":"annotated-element-provider-test"},{"a_attr":{"onclick":"window.location='../../app/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../app/site/index.html';"},"data-nsd-label-uuid":"b2b233cd-40db-4081-814c-d5188263f780","id":"nsd-app-nav-item-6cac3ca6-5819-4dbc-a158-0d6067427879","text":"site","type":"leaf"}],"data-nsd-label-uuid":"530d5e40-4fe1-437c-998c-e3044c02162a","id":"nsd-app-nav-item-b2c44f06-16b6-45c9-be4f-b6a34fcb0a80","text":"app"},{"a_attr":{"onclick":"window.location='../../chat-server/index.html';"},"data-nsd-label-uuid":"4cf78efe-8b31-4072-bef2-363b3bff67d9","id":"nsd-app-nav-item-8360a089-228d-4070-9945-cc4af7c4cc00","text":"chat-server","type":"leaf"},{"a_attr":{"onclick":"window.location='../../drawio/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../drawio/html-app/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../drawio/html-app/crew-ai/index.html';"},"data-nsd-label-uuid":"d83135cb-d4df-4303-a584-dcca90c7535b","icon":"https://crew-ai.models.nasdanika.org/images/crewai.svg","id":"nsd-app-nav-item-2f1201dc-c55d-463d-9608-82b8d0f09a1f","text":"crew-ai","type":"leaf"},{"a_attr":{"onclick":"window.location='../../drawio/html-app/save/index.html';"},"data-nsd-label-uuid":"12645484-5798-43a0-aa52-5690ed48c261","icon":"https://img.icons8.com/dusk/20/save--v1.png","id":"nsd-app-nav-item-231ed58f-dba7-4ffb-84a7-7540124fbe8c","text":"save","type":"leaf"},{"a_attr":{"onclick":"window.location='../../drawio/html-app/site/index.html';"},"data-nsd-label-uuid":"f828c562-f204-4bf0-aefe-fdfff89f2ceb","icon":"https://img.icons8.com/material-two-tone/20/web.png","id":"nsd-app-nav-item-e5083b3d-7bee-41bc-acfc-cfc18677b370","text":"site","type":"leaf"}],"data-nsd-label-uuid":"cb904616-5d73-4198-93ff-c1892871a825","icon":"https://docs.nasdanika.org/images/html-application.svg","id":"nsd-app-nav-item-1b06c952-09a0-41b0-9b22-31a6fcd0d54e","text":"html-app"},{"a_attr":{"onclick":"window.location='../../drawio/http-server/index.html';"},"data-nsd-label-uuid":"ea7a603c-da96-4408-83fe-1e654c9e6420","icon":"https://docs.nasdanika.org/images/http.svg","id":"nsd-app-nav-item-7d4f1e08-6d78-413b-adf8-58a24e8a13e1","text":"http-server","type":"leaf"},{"a_attr":{"onclick":"window.location='../../drawio/invoke/index.html';"},"data-nsd-label-uuid":"eae5f5d4-fc8a-4683-bb2f-b0ed0897193e","icon":"https://docs.nasdanika.org/images/automation.svg","id":"nsd-app-nav-item-8560b857-33de-458b-a64f-19f4f2cdda94","text":"invoke","type":"leaf"}],"data-nsd-label-uuid":"fe2c65e6-3820-41a8-bc0d-fde83bbf572a","icon":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3QgeT0iMiIgeD0iMiIgd2lkdGg9IjI4IiByeD0iMS4xMiIgaGVpZ2h0PSIyOCIgZmlsbD0iI2YwODcwNSIvPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI2RmNmMwYyIgZD0ibTE2Ljg2MSA5LjE2OCAzLjAyLTMuMTg3IDEwLjExOSAxMC4xMTN2MTIuNzg2YTEuMTE5IDEuMTE5IDAgMCAxIC0xLjEyIDEuMTJoLTE3LjU2NGwtNS4zODUtNS40MDd6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0ibTI1LjI0IDE3Ljk2aC0zLjI5NGwtMy4wNzEtNS4zMmguMmExLjExOSAxLjExOSAwIDAgMCAxLjEyLTEuMTJ2LTQuNzZhMS4xMTkgMS4xMTkgMCAwIDAgLTEuMTItMS4xMmgtNi4xNTVhMS4xMTkgMS4xMTkgMCAwIDAgLTEuMTIgMS4xMnY0Ljc2YTEuMTE5IDEuMTE5IDAgMCAwIDEuMTIgMS4xMmguMjA1bC0zLjA3MSA1LjMyaC0zLjI5NGExLjExOSAxLjExOSAwIDAgMCAtMS4xMiAxLjEydjQuNzZhMS4xMTkgMS4xMTkgMCAwIDAgMS4xMiAxLjEyaDYuMTZhMS4xMTkgMS4xMTkgMCAwIDAgMS4xMi0xLjEydi00Ljc2YTEuMTE5IDEuMTE5IDAgMCAwIC0xLjEyLTEuMTJoLS45MjdsMy4wNzItNS4zMmgxLjg3bDMuMDcxIDUuMzJoLS45MjZhMS4xMTkgMS4xMTkgMCAwIDAgLTEuMTIgMS4xMnY0Ljc2YTEuMTE5IDEuMTE5IDAgMCAwIDEuMTIgMS4xMmg2LjE2YTEuMTE5IDEuMTE5IDAgMCAwIDEuMTItMS4xMnYtNC43NmExLjExOSAxLjExOSAwIDAgMCAtMS4xMi0xLjEyeiIvPjwvc3ZnPg==","id":"nsd-app-nav-item-1603e410-e57b-41c5-889a-0fe42246f801","text":"drawio"},{"a_attr":{"onclick":"window.location='../../exit/index.html';"},"data-nsd-label-uuid":"8b62d8e5-c79e-4306-a13d-1fc59f893051","id":"nsd-app-nav-item-ce1d2693-a074-4d06-9253-6a3d9850fe8b","text":"exit","type":"leaf"},{"a_attr":{"onclick":"window.location='../../gitlab/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../gitlab/contribute/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../gitlab/contribute/gsh/index.html';"},"data-nsd-label-uuid":"a6b6a299-e123-4601-b07f-356a1eb13a8b","icon":"https://docs.nasdanika.org/images/command.svg","id":"nsd-app-nav-item-a94a6a72-df2e-4184-a30d-8a1fe25d644e","text":"gsh","type":"leaf"},{"a_attr":{"onclick":"window.location='../../gitlab/contribute/invoke/index.html';"},"data-nsd-label-uuid":"185de25c-f58a-4cb3-a3aa-8aeabbad9ff6","icon":"https://docs.nasdanika.org/images/automation.svg","id":"nsd-app-nav-item-0c8bb299-0aa9-4e08-9bde-8eba709d0df9","text":"invoke","type":"leaf"},{"a_attr":{"onclick":"window.location='../../gitlab/contribute/junit/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../gitlab/contribute/junit/jacoco/index.html';"},"data-nsd-label-uuid":"86c5a41b-7e71-49a4-8ef1-66aa623a9ab1","id":"nsd-app-nav-item-19067130-82a3-4ab2-9830-106dc77791dd","text":"jacoco","type":"leaf"}],"data-nsd-label-uuid":"06bd63d7-c38f-4147-b8cb-be1d52e68e81","icon":"https://docs.nasdanika.org/images/JUnit.svg","id":"nsd-app-nav-item-f748618b-80b3-4e95-8ef3-b135ca98800c","text":"junit"},{"a_attr":{"onclick":"window.location='../../gitlab/contribute/retrospect/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../gitlab/contribute/retrospect/demo/index.html';"},"data-nsd-label-uuid":"e76fcaf9-ff6b-4bd7-b9b3-a8f25b31376a","icon":"https://docs.nasdanika.org/images/demo.svg","id":"nsd-app-nav-item-58ed99cd-a14e-4d87-9d2c-4ab5c25e2242","text":"demo","type":"leaf"},{"a_attr":{"onclick":"window.location='../../gitlab/contribute/retrospect/demo-analyze/index.html';"},"data-nsd-label-uuid":"332a0566-a267-45b3-a2e1-c0ca51450d8c","icon":"https://docs.nasdanika.org/images/java-script.svg","id":"nsd-app-nav-item-53955c87-85bd-4aa0-8f3a-512e3bd2e368","text":"demo-analyze","type":"leaf"},{"a_attr":{"onclick":"window.location='../../gitlab/contribute/retrospect/gsh/index.html';"},"data-nsd-label-uuid":"1f35ba99-1b25-4d41-acd9-c1cccb607bdf","icon":"https://docs.nasdanika.org/images/command.svg","id":"nsd-app-nav-item-4deb302e-0cf0-4237-aad1-0ed6c3e0ac42","text":"gsh","type":"leaf"},{"a_attr":{"onclick":"window.location='../../gitlab/contribute/retrospect/invoke/index.html';"},"data-nsd-label-uuid":"91e08bda-47a4-4caf-b89a-f154d9fc1737","icon":"https://docs.nasdanika.org/images/automation.svg","id":"nsd-app-nav-item-a26c4404-6130-4a42-9f99-d32c3ef19f9e","text":"invoke","type":"leaf"}],"data-nsd-label-uuid":"dcc06ad3-b60c-47cd-a3b5-2264a2c3fbc9","icon":"https://docs.nasdanika.org/images/retrospective.svg","id":"nsd-app-nav-item-08730910-6c87-45e4-ac1f-1162bc563e5d","text":"retrospect"}],"data-nsd-label-uuid":"b59f5d09-a36f-4d9f-893f-7ac0a0a34e97","icon":"https://docs.nasdanika.org/images/jigsaw.svg","id":"nsd-app-nav-item-931be9ab-8bad-4b95-a74f-bd404fee7135","text":"contribute"},{"a_attr":{"onclick":"window.location='../../gitlab/gsh/index.html';"},"data-nsd-label-uuid":"11696c8c-a4d7-4b6c-82b8-d6650f14e456","icon":"https://docs.nasdanika.org/images/command.svg","id":"nsd-app-nav-item-2d5c23e9-eb6e-46b9-a936-64624fc83369","text":"gsh","type":"leaf"},{"a_attr":{"onclick":"window.location='../../gitlab/invoke/index.html';"},"data-nsd-label-uuid":"a7c790b5-0904-4146-819e-077f174d5c8c","icon":"https://docs.nasdanika.org/images/automation.svg","id":"nsd-app-nav-item-02bf1a74-efd4-485d-b492-130aabd34b8e","text":"invoke","type":"leaf"}],"data-nsd-label-uuid":"93dfd66d-d375-45d5-980a-845e6701d2e4","icon":"https://docs.nasdanika.org/images/GitLab.svg","id":"nsd-app-nav-item-1f01a24f-6bb0-405f-8b97-dcfbb94652ec","text":"gitlab"},{"a_attr":{"onclick":"window.location='../../gsh/index.html';"},"data-nsd-label-uuid":"c654c2fd-939b-4394-8508-e8141997ae81","icon":"https://docs.nasdanika.org/images/command.svg","id":"nsd-app-nav-item-1e65eac1-efee-4e81-892b-7138a0274072","text":"gsh","type":"leaf"},{"a_attr":{"onclick":"window.location='../../help/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../help/site/index.html';"},"data-nsd-label-uuid":"71d0b7c5-4b4f-4db3-be5d-82e66560821a","icon":"https://img.icons8.com/material-two-tone/20/web.png","id":"nsd-app-nav-item-e70fc48b-8495-4b3f-a8ed-2b59b7a5d3e7","text":"site","type":"leaf"}],"data-nsd-label-uuid":"92b9be9c-2721-48f4-bfbb-c1114891f742","icon":"far fa-question-circle","id":"nsd-app-nav-item-8c7c847d-406e-41fb-aa07-3c121537eb87","text":"help"},{"a_attr":{"onclick":"window.location='../../http-server/index.html';"},"data-nsd-label-uuid":"520411d1-a548-41be-9bc0-43ea64da649a","icon":"https://docs.nasdanika.org/images/http.svg","id":"nsd-app-nav-item-3c43c783-ca7a-4388-91ae-580754e5a6e2","text":"http-server","type":"leaf"},{"a_attr":{"onclick":"window.location='../../inspect-yaml/index.html';"},"data-nsd-label-uuid":"10689f66-cdfa-4cdb-a5f8-093966accc0d","id":"nsd-app-nav-item-3433b5e0-0fa8-4bd3-a4a4-586445efcff6","text":"inspect-yaml","type":"leaf"},{"a_attr":{"onclick":"window.location='../../invoke/index.html';"},"data-nsd-label-uuid":"6ba11614-194d-4978-a417-f4ebea641877","icon":"https://docs.nasdanika.org/images/automation.svg","id":"nsd-app-nav-item-b2b063a3-9981-4a22-97e6-776af9bde720","text":"invoke","type":"leaf"},{"a_attr":{"onclick":"window.location='../../java/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../java/junit/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../java/junit/jacoco/index.html';"},"data-nsd-label-uuid":"3d779c7b-3895-401f-b148-99e7ee5db113","id":"nsd-app-nav-item-752bb314-eb9f-4517-b3a9-c21fea69b29c","text":"jacoco","type":"leaf"}],"data-nsd-label-uuid":"da438ca8-9784-4ddf-9a81-c48039a794fa","icon":"https://docs.nasdanika.org/images/JUnit.svg","id":"nsd-app-nav-item-03151b82-add7-4890-94f6-64cb0e1e1286","text":"junit"}],"data-nsd-label-uuid":"7a13b5c7-33ca-412a-93f4-a59ea0c8a54e","icon":"https://docs.nasdanika.org/images/java.svg","id":"nsd-app-nav-item-56a974c8-f084-48a8-b2fc-a9296733e6b6","text":"java"},{"a_attr":{"onclick":"window.location='../../launcher/index.html';"},"data-nsd-label-uuid":"2fbef5f9-8061-45bc-9e45-c1f7618a9e26","id":"nsd-app-nav-item-185a894b-3ced-4f4c-9559-3f8f95563adb","text":"launcher","type":"leaf"},{"a_attr":{"onclick":"window.location='../../list-inspectable-rules/index.html';"},"data-nsd-label-uuid":"071449f1-6379-46ff-b6c0-41aaca864b32","id":"nsd-app-nav-item-6fff00da-711d-48f9-b3bd-12e01adfdc67","text":"list-inspectable-rules","type":"leaf"},{"a_attr":{"onclick":"window.location='../../list-rules/index.html';"},"data-nsd-label-uuid":"92ea3931-1b8c-4bbe-933e-d938eba669fc","id":"nsd-app-nav-item-22751c54-6e14-4552-9b5e-aa6e2cf55144","text":"list-rules","type":"leaf"},{"a_attr":{"onclick":"window.location='../index.html';"},"children":[{"data-nsd-label-uuid":"79db540a-5503-4277-b694-4769bc856cba","icon":"https://crew-ai.models.nasdanika.org/images/crewai.svg","state":{"selected":true},"id":"nsd_1m4","text":"crew-ai","type":"leaf"},{"a_attr":{"onclick":"window.location='../html-app/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../html-app/crew-ai/index.html';"},"data-nsd-label-uuid":"cf6b6342-edb3-434b-bbd7-201e998ec5fa","icon":"https://crew-ai.models.nasdanika.org/images/crewai.svg","id":"nsd-app-nav-item-d95813ed-942e-4a68-8523-332fcd2ebd08","text":"crew-ai","type":"leaf"},{"a_attr":{"onclick":"window.location='../html-app/save/index.html';"},"data-nsd-label-uuid":"ba366a4b-05ca-40f0-9e31-8cd564f94c8c","icon":"https://img.icons8.com/dusk/20/save--v1.png","id":"nsd-app-nav-item-7d981bbb-bf73-426f-b125-1a6d7256c78e","text":"save","type":"leaf"},{"a_attr":{"onclick":"window.location='../html-app/site/index.html';"},"data-nsd-label-uuid":"60f6774b-727a-4845-a9b1-e772bcf2868b","icon":"https://img.icons8.com/material-two-tone/20/web.png","id":"nsd-app-nav-item-e87b74f7-4e18-46bc-ae68-c06ce878a38b","text":"site","type":"leaf"}],"data-nsd-label-uuid":"299ed06c-e5bb-4c37-b63f-00da7cf8229c","icon":"https://docs.nasdanika.org/images/html-application.svg","id":"nsd-app-nav-item-635914aa-b53f-4190-bb18-e2c461a2b384","text":"html-app"},{"a_attr":{"onclick":"window.location='../save/index.html';"},"data-nsd-label-uuid":"4bb8d932-8b21-4d9a-aba0-19842b4b7fbf","icon":"https://img.icons8.com/dusk/20/save--v1.png","id":"nsd-app-nav-item-539b0e9a-5e2f-41ee-ba78-df9f72682c50","text":"save","type":"leaf"}],"data-nsd-label-uuid":"07f2af18-2abd-4f57-a2ea-d52e69e6c9d1","icon":"https://docs.nasdanika.org/images/model.svg","id":"nsd-app-nav-item-8b873993-28c2-41dd-8df4-867edda1723a","text":"model"},{"a_attr":{"onclick":"window.location='../../module-graph/index.html';"},"data-nsd-label-uuid":"eeaa5a2e-caa9-4015-977f-32cc1992313b","id":"nsd-app-nav-item-d3fc161c-d2e5-4914-b45c-1c1f3dd9f565","text":"module-graph","type":"leaf"},{"a_attr":{"onclick":"window.location='../../pdf-indexer/index.html';"},"data-nsd-label-uuid":"ff5bf385-7b11-41a8-8761-b3e9c73a7e9d","id":"nsd-app-nav-item-04f5dd6b-3f96-40ac-b1c3-7e9592b6c2eb","text":"pdf-indexer","type":"leaf"},{"a_attr":{"onclick":"window.location='../../rules/index.html';"},"children":[{"a_attr":{"onclick":"window.location='../../rules/action-model/index.html';"},"data-nsd-label-uuid":"c6a46ac8-01e2-409e-8fb1-f5e0ea914e53","id":"nsd-app-nav-item-a88a05f3-19b5-43aa-aa9b-998d401ac4d6","text":"action-model","type":"leaf"},{"a_attr":{"onclick":"window.location='../../rules/list/index.html';"},"data-nsd-label-uuid":"755a04ad-48e4-40cd-926f-5042465b1607","id":"nsd-app-nav-item-d1a64410-453d-4589-a6c8-ca130ddeb54d","text":"list","type":"leaf"},{"a_attr":{"onclick":"window.location='../../rules/site/index.html';"},"data-nsd-label-uuid":"f542819f-66b3-4944-ae31-9f9bcb964bae","id":"nsd-app-nav-item-9744a6a9-9ab2-4071-b83e-d21c14e499c5","text":"site","type":"leaf"}],"data-nsd-label-uuid":"28b7cea1-9132-4557-988a-5387162f8540","icon":"https://docs.nasdanika.org/images/rules.svg","id":"nsd-app-nav-item-828ad9ac-7639-449d-a246-d8ef5422ce37","text":"rules"},{"a_attr":{"onclick":"window.location='../../shell/index.html';"},"data-nsd-label-uuid":"98e60c1c-73ef-4cd8-9823-625ecdcd8f78","icon":"https://img.icons8.com/nolan/20/console.png","id":"nsd-app-nav-item-1f4db47d-04bd-4c80-93d9-57b00b232a97","text":"shell","type":"leaf"}]},"search":{"show_only_matches":true,"show_only_matches_children":true},"types":{"leaf":{"icon":"jstree-file"}},"plugins":["state","type","search"],"state":{"key":"b1c173f2-7ee4-418a-ba30-e099236ed88a-navigation-panel"}}));
+// Tokens: searchInputSelector, timer, treeSelector
+$('#b1c173f2-7ee4-418a-ba30-e099236ed88a-navigation-panel_searchInput').keyup(function () {
+    if (window['nsd_jstTreeSearchTimer_nsd_1mi']) { 
+		clearTimeout(window['nsd_jstTreeSearchTimer_nsd_1mi']); 
+	}
+    window['nsd_jstTreeSearchTimer_nsd_1mi'] = setTimeout(function () {
+      var v = $('#b1c173f2-7ee4-418a-ba30-e099236ed88a-navigation-panel_searchInput').val();
+      $('#b1c173f2-7ee4-418a-ba30-e099236ed88a-navigation-panel').jstree(true).search(v);
+    }, 250);
+  });
+
+});</script>
+          </div>
+        </div>
+        <div data-nsd-label-uuid="79db540a-5503-4277-b694-4769bc856cba" data-nsd-action-uris="uuid:79db540a-5503-4277-b694-4769bc856cba" class="col nsd-app-content-panel">
+          <div class="container-fluid">
+            <div class="row nsd-app-content-panel-breadcrumb-row">
+              <div class="col">
+                <nav aria-label="breadcrumb" class="nsd-app-content-panel-breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a href="../index.html" data-nsd-label-uuid="07f2af18-2abd-4f57-a2ea-d52e69e6c9d1">
+                        <img src="https://docs.nasdanika.org/images/model.svg" class="nsd-app-label-icon"/>model</a>
+                    </li>
+                    <li class="breadcrumb-item active"><span data-nsd-label-uuid="79db540a-5503-4277-b694-4769bc856cba"><img src="https://crew-ai.models.nasdanika.org/images/crewai.svg" class="nsd-app-label-icon"/>crew-ai</span>
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <div class="row nsd-app-content-panel-title-and-items-row">
+              <div class="col-auto">
+                <H1><span data-nsd-label-uuid="79db540a-5503-4277-b694-4769bc856cba" class="nsd-app-content-panel-title"><img src="https://crew-ai.models.nasdanika.org/images/crewai.svg" class="nsd-app-label-icon"/>crew-ai</span>
+                </H1>
+              </div>
+            </div>
+            <div class="row nsd-app-content-panel-content-row">
+              <div class="col">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col"><table><tr><th valign="top">Version:</th><td> 
+org.nasdanika.models.crewai.cli
+<br/>
+</td></tr></table>
+<div style="font-family:monospace;white-space:pre;padding:5px;width:max-content">
+Usage: nsd model crew-ai [-hV] [--progress-console] [--progress-data]
+                         [--progress-json] [--progress-output=&lt;progressOutput&gt;]
+                         [--content-type-resource-factory=&lt;String=Class&gt;]...
+                         [--extension-resource-factory=&lt;String=Class&gt;]...
+                         [--protocol-resource-factory=&lt;String=Class&gt;]...
+                         &lt;output&gt;
+Generates CrewAI code and configuration from a model
+      &lt;output&gt;             Crew class output file
+      --content-type-resource-factory=&lt;String=Class&gt;
+                           Maps content type to resource factory class
+      --extension-resource-factory=&lt;String=Class&gt;
+                           Maps extension to resource factory class
+  -h, --help               Show this help message and exit.
+      --progress-console   Output progress to console
+      --progress-data      Output progress data
+      --progress-json      Output progress in JSON
+      --progress-output=&lt;progressOutput&gt;
+                           Output file for progress monitor
+      --protocol-resource-factory=&lt;String=Class&gt;
+                           Maps protocol to resource factory class
+  -V, --version            Print version information and exit.
+</div>
+<div class="markdown-body">
+
+</div>
+</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -2,6 +2,7 @@ import org.nasdanika.capability.CapabilityFactory;
 import org.nasdanika.launcher.demo.GitLabDemoRetrospectCommandFactory;
 import org.nasdanika.launcher.demo.IAnnotatedElementProviderTestCommandFactory;
 import org.nasdanika.launcher.demo.ModuleGraphCommandFactory;
+import org.nasdanika.launcher.demo.ai.ChatServerCommandFactory;
 import org.nasdanika.launcher.demo.ai.EnvironmentVariableKeyCredentialCapabilityFactory;
 import org.nasdanika.launcher.demo.ai.OpenAIAdaEmbeddingsCapabilityFactory;
 import org.nasdanika.launcher.demo.ai.OpenAIGpt4oChatCapabilityFactory;
@@ -34,6 +35,8 @@ module org.nasdanika.launcher.demo {
 	requires org.nasdanika.ai.cli;
 	requires org.nasdanika.models.pdf;
 	requires org.nasdanika.ai.openai;
+	requires org.nasdanika.html.alpinejs;
+	requires org.nasdanika.ai;
 	
 	opens org.nasdanika.launcher.demo to info.picocli;
 	opens org.nasdanika.launcher.demo.java to info.picocli;
@@ -58,5 +61,6 @@ module org.nasdanika.launcher.demo {
 		DemoReflectiveHttpRoutesFactory,
 		OpenAIAdaEmbeddingsCapabilityFactory,
 		OpenAIGpt4oChatCapabilityFactory,
-		PdfIndexerCommandFactory;		
+		PdfIndexerCommandFactory,
+		ChatServerCommandFactory;		
 }
