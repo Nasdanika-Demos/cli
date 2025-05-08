@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.json.JSONObject;
-import org.nasdanika.ai.cli.VectorIndexCommandBase;
+import org.nasdanika.ai.cli.HnswIndexCommandBase;
 import org.nasdanika.capability.CapabilityLoader;
 import org.nasdanika.cli.ParentCommands;
 import org.nasdanika.cli.RootCommand;
@@ -47,7 +47,7 @@ import reactor.core.publisher.Flux;
 	mixinStandardHelpOptions = true,
 	name = "pdf-indexer")	
 @ParentCommands(RootCommand.class)
-public class PdfIndexerCommand extends VectorIndexCommandBase {
+public class PdfIndexerCommand extends HnswIndexCommandBase {
 	
 	public enum Granularity {
 		document, 

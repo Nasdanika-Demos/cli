@@ -20,7 +20,7 @@ import org.nasdanika.ai.SearchResult;
 import org.nasdanika.ai.SimilaritySearch;
 import org.nasdanika.ai.SimilaritySearch.EmbeddingsItem;
 import org.nasdanika.ai.SimilaritySearch.IndexId;
-import org.nasdanika.ai.cli.VectorIndexCommandBase;
+import org.nasdanika.ai.cli.HnswIndexCommandBase;
 import org.nasdanika.capability.CapabilityLoader;
 import org.nasdanika.cli.ParentCommands;
 import org.nasdanika.cli.RootCommand;
@@ -138,7 +138,7 @@ public class ChatServerCommand extends AbstractHttpServerCommand {
 	
 	protected void buildRoutes(HttpServerRoutes routes) {	
 		try (InputStream textMapInputStream = new FileInputStream(textMap)) {
-			HnswIndex<IndexId, float[], EmbeddingsItem, Float> hnswIndex = VectorIndexCommandBase.loadIndex(index);			
+			HnswIndex<IndexId, float[], EmbeddingsItem, Float> hnswIndex = HnswIndexCommandBase.loadIndex(index);			
 			SimilaritySearch<List<Float>, Float> vectorSearch = SimilaritySearch.from(exact ? hnswIndex.asExactIndex() : hnswIndex);				
 			SimilaritySearch<List<List<Float>>, Float> multiVectorSearch = SimilaritySearch.adapt(vectorSearch);	
 			SimilaritySearch<String, Float> textSearch = SimilaritySearch.embeddingsSearch(multiVectorSearch, embeddings);
