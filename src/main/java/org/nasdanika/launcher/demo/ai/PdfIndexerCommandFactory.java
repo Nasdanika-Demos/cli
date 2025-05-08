@@ -3,8 +3,10 @@ package org.nasdanika.launcher.demo.ai;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.nasdanika.capability.CapabilityFactory;
 import org.nasdanika.capability.ServiceCapabilityFactory;
+import org.nasdanika.capability.emf.ResourceSetRequirement;
 import org.nasdanika.cli.SubCommandCapabilityFactory;
 import org.nasdanika.common.ProgressMonitor;
 
@@ -26,8 +28,12 @@ public class PdfIndexerCommandFactory extends SubCommandCapabilityFactory<PdfInd
 		
 		Requirement<Object, OpenTelemetry> openTelemetryRequirement = ServiceCapabilityFactory.createRequirement(OpenTelemetry.class);
 		CompletionStage<OpenTelemetry> openTelemetryCS = loader.loadOne(openTelemetryRequirement, progressMonitor);
+
+		Requirement<ResourceSetRequirement, ResourceSet> resourceSetRequirement = ServiceCapabilityFactory.createRequirement(ResourceSet.class);		
+		CompletionStage<ResourceSet > resourceSetCS = loader.loadOne(resourceSetRequirement, progressMonitor);
 		
-		return openTelemetryCS.thenApply(openTelemetry -> new PdfIndexerCommand(openTelemetry, loader.getCapabilityLoader()));
+		
+		return openTelemetryCS.thenCombine(resourceSetCS, (openTelemetry, resourceSet) -> new PdfIndexerCommand(resourceSet, openTelemetry, loader.getCapabilityLoader()));
 	}
 
 }

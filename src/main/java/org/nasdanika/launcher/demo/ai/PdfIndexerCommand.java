@@ -16,9 +16,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.json.JSONObject;
 import org.nasdanika.ai.cli.VectorIndexCommandBase;
 import org.nasdanika.capability.CapabilityLoader;
-import org.nasdanika.capability.ServiceCapabilityFactory;
-import org.nasdanika.capability.ServiceCapabilityFactory.Requirement;
-import org.nasdanika.capability.emf.ResourceSetRequirement;
 import org.nasdanika.cli.ParentCommands;
 import org.nasdanika.cli.RootCommand;
 import org.nasdanika.common.NasdanikaException;
@@ -59,8 +56,14 @@ public class PdfIndexerCommand extends VectorIndexCommandBase {
 		paragraph
 	}
 
-	public PdfIndexerCommand(OpenTelemetry openTelemetry, CapabilityLoader capabilityLoader) {
+	protected ResourceSet resourceSet;
+
+	public PdfIndexerCommand(
+			ResourceSet resourceSet,
+			OpenTelemetry openTelemetry, 
+			CapabilityLoader capabilityLoader) {
 		super(openTelemetry, capabilityLoader);
+		this.resourceSet = resourceSet;
 	}
 	
 	@Parameters(
@@ -86,9 +89,6 @@ public class PdfIndexerCommand extends VectorIndexCommandBase {
 
 	@Override
 	protected Flux<Entry<String, String>> getItems(Span commandSpan, ProgressMonitor progressMonitor) {
-		Requirement<ResourceSetRequirement, ResourceSet> requirement = ServiceCapabilityFactory.createRequirement(ResourceSet.class);		
-		ResourceSet resourceSet = capabilityLoader.loadOne(requirement, progressMonitor);
-		
 		Map<String, String> itemMap = new LinkedHashMap<>();
 		JSONObject textMap = new JSONObject();
 		for (Entry<String,File> ie: inputs.entrySet()) {
