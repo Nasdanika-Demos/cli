@@ -208,33 +208,33 @@ public class ChatServerCommand extends AbstractHttpServerCommand {
 		AlpineJs<Button> alpineSubmitButton = alpineJsFactory.from(submitButton);
 		
 		String submitHandler = """
-				messages.push({
-					content: text,
-					style: 'primary'
-				});
-				
-				var responseMessage = Alpine.reactive({
-					content: 'Processing...',
-					style: 'muted'
-				});
-				messages.push(responseMessage);						
-				
-				fetch("chat", {
-					method: 'POST',
-					body: text
-				}).then(response => {
-					if (response.ok) {
-						response.json().then(responseJson => {
-							responseMessage.content = responseJson.content;
-							responseMessage.style = responseJson.style;
-						});
-					} else {
-						responseMessage.content = response.status + ": " + response.statusText;
-						responseMessage.style = 'danger';
-					}
-				});
-				text = '';
-				""";
+			messages.push({
+				content: text,
+				style: 'primary'
+			});
+			
+			var responseMessage = Alpine.reactive({
+				content: 'Processing...',
+				style: 'muted'
+			});
+			messages.push(responseMessage);						
+			
+			fetch("chat", {
+				method: 'POST',
+				body: text
+			}).then(response => {
+				if (response.ok) {
+					response.json().then(responseJson => {
+						responseMessage.content = responseJson.content;
+						responseMessage.style = responseJson.style;
+					});
+				} else {
+					responseMessage.content = response.status + ": " + response.statusText;
+					responseMessage.style = 'danger';
+				}
+			});
+			text = '';
+			""";
 		
 		alpineSubmitButton.on("click", submitHandler);
 		alpineSubmitButton.bind("disabled", "!text");
@@ -262,12 +262,12 @@ public class ChatServerCommand extends AbstractHttpServerCommand {
 			.flatMap(result -> {
 				List<Chat.Message> messages = new ArrayList<>();
 	    		messages.add(Chat.Role.system.createMessage(
-	    				"""	    				
-	    				You are a helpful assistant.
-	    				You will answer user question about TOGAF 10 standard leveraging provided documents
-	    				and provide references to the used documents.
-	    				Output your answer in markdown.	    				
-	    				"""));
+    				"""	    				
+    				You are a helpful assistant.
+    				You will answer user question about TOGAF 10 standard leveraging provided documents
+    				and provide references to the used documents.
+    				Output your answer in markdown.	    				
+    				"""));
 	    		messages.add(Chat.Role.user.createMessage(result.text()));
 	    		
 	    		List<SearchResult<Float>> references = new ArrayList<>();

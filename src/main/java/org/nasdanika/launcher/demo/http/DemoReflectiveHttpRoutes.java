@@ -1,5 +1,6 @@
 package org.nasdanika.launcher.demo.http;
 
+import org.json.JSONObject;
 import org.nasdanika.http.HttpServerRouteBuilder;
 import org.nasdanika.http.ReflectiveHttpServerRouteBuilder.Route;
 import org.nasdanika.http.ReflectiveHttpServerRouteBuilder.RouteBuilder;
@@ -62,6 +63,15 @@ public class DemoReflectiveHttpRoutes {
 	@RouteBuilder("route-builder-method")
 	public void buildRoutes(HttpServerRoutes routes) {
 		routes.get("/hello", (request, response) -> response.sendString(Mono.just("Hello from route builder method!")));
-	};	
+	};
+	
+	@Route
+	public JSONObject getApiSearch(
+			HttpServerRequest request, 
+			HttpServerResponse response) {
+		JSONObject result = new JSONObject();
+		result.put("result", "Hello World!");
+		return result;
+	}
 	
 }

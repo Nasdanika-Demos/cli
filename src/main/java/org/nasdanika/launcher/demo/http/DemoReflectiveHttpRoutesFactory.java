@@ -7,6 +7,10 @@ import org.nasdanika.capability.ServiceCapabilityFactory;
 import org.nasdanika.common.ProgressMonitor;
 import org.nasdanika.http.HttpServerRouteBuilder;
 import org.nasdanika.http.ReflectiveHttpServerRouteBuilder;
+import org.nasdanika.http.TelemetryFilter;
+
+import io.opentelemetry.api.OpenTelemetry;
+import io.opentelemetry.api.trace.Tracer;
 
 public class DemoReflectiveHttpRoutesFactory extends ServiceCapabilityFactory<Void, HttpServerRouteBuilder> {
 		
@@ -22,9 +26,20 @@ public class DemoReflectiveHttpRoutesFactory extends ServiceCapabilityFactory<Vo
 			Loader loader,
 			ProgressMonitor progressMonitor) {
 		
-		ReflectiveHttpServerRouteBuilder builder = new ReflectiveHttpServerRouteBuilder();
-		builder.addTargets("/reflective", new DemoReflectiveHttpRoutes());				
-		return wrap(builder);
+		Requirement<Object, OpenTelemetry> openTelemetryRequirement = ServiceCapabilityFactory.createRequirement(OpenTelemetry.class);
+		CompletionStage<OpenTelemetry> openTelemetryCS = loader.loadOne(openTelemetryRequirement, progressMonitor);		
+		
+		return wrapCompletionStage(openTelemetryCS.thenApply(openTelemetry -> {
+			Tracer tracer = openTelemetry.getTracer(DemoReflectiveHttpRoutesFactory.class.getName());
+			TelemetryFilter telemetryFilter = new TelemetryFilter(
+					tracer, 
+					openTelemetry.getPropagators().getTextMapPropagator(), 
+					(k, v) -> System.out.println(k + ": " + v), 
+					true);
+			ReflectiveHttpServerRouteBuilder builder = new ReflectiveHttpServerRouteBuilder(telemetryFilter);
+			builder.addTargets("/reflective", new DemoReflectiveHttpRoutes());				
+			return builder;
+		}));
 	}
 	
 }
