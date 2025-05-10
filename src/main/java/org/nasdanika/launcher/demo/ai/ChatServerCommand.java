@@ -177,8 +177,9 @@ public class ChatServerCommand extends AbstractHttpServerCommand {
 		Container chatApp = bootstrapFactory.container();
 		JSONObject appData = alpineJsFactory.from(chatApp.toHTMLElement()).data();
 		JSONArray messagesArray = new JSONArray();
-		appData.put("messages", messagesArray);
-		appData.put("text", "");
+		appData
+			.put("messages", messagesArray)
+			.put("text", "");
 		
 		page.body(chatApp);
 		
@@ -186,26 +187,29 @@ public class ChatServerCommand extends AbstractHttpServerCommand {
 		Card messageCard = bootstrapFactory.card();
 		messageCard.margin().bottom(Breakpoint.DEFAULT, Size.S1);
 		Tag messageCardHtmlElement = messageCard.toHTMLElement();
-		AlpineJs<Tag> alpineMessageCard = alpineJsFactory.from(messageCardHtmlElement);
-		alpineMessageCard.bind("class", "'border-' + message.style");
+		alpineJsFactory
+			.from(messageCardHtmlElement)
+			.bind("class", "'border-' + message.style");
 		messageCard.border(Color.DEFAULT);		
 		Tag messageCardBody = messageCard.getBody().toHTMLElement();
 		messageCardBody.content("Loading...");
-		AlpineJs<Tag> alpineMessageCardBody = alpineJsFactory.from(messageCardBody);
-		alpineMessageCardBody.html("message.content");				
+		alpineJsFactory
+			.from(messageCardBody)
+			.html("message.content");				
 		Tag messagesFor = alpineJsFactory._for("message in messages", messageCardHtmlElement);		
 		chatApp.row().col().content(messagesFor);
 		
 		// Text area
 		TextArea textArea = bootstrapFactory.getHTMLFactory().textArea();
+		textArea
+			.name("userInput")
+			.placeholder("Ask me anything about TOGAF 10");
+		InputGroup textAreaInputGroup = bootstrapFactory
+			.inputGroup()
+			.input(textArea)
+			.prepend("Chat");
 		alpineJsFactory.from(textArea).model("text");
-		textArea.name("userInput");
-		textArea.placeholder("Ask me anything about TOGAF 10");
-		InputGroup textAreaInputGroup = bootstrapFactory.inputGroup();
-		textAreaInputGroup.input(textArea);
-		textAreaInputGroup.prepend("Chat");
 		Button submitButton = bootstrapFactory.getHTMLFactory().button("Submit");
-		AlpineJs<Button> alpineSubmitButton = alpineJsFactory.from(submitButton);
 		
 		String submitHandler = """
 			messages.push({
@@ -236,8 +240,10 @@ public class ChatServerCommand extends AbstractHttpServerCommand {
 			text = '';
 			""";
 		
-		alpineSubmitButton.on("click", submitHandler);
-		alpineSubmitButton.bind("disabled", "!text");
+		alpineJsFactory
+			.from(submitButton)
+			.on("click", submitHandler)
+			.bind("disabled", "!text");
 		org.nasdanika.html.bootstrap.Button<Button> bootstrapSubmitButton = bootstrapFactory.button(submitButton, Color.PRIMARY, false);
 		textAreaInputGroup.append(bootstrapSubmitButton);
 		chatApp.row().col().content(textAreaInputGroup);
