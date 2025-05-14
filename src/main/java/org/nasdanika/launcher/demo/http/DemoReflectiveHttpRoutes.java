@@ -73,5 +73,12 @@ public class DemoReflectiveHttpRoutes {
 		result.put("result", "Hello World!");
 		return result;
 	}
+		
+	@Route("do-something-else")
+	public Mono<String> doSomethingElse(
+			HttpServerRequest request, 
+			HttpServerResponse response) {
+		return Mono.just("do someting else");
+	}	
 	
 }

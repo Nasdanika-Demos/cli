@@ -6,7 +6,6 @@ import java.util.concurrent.CompletionStage;
 import org.nasdanika.ai.Chat;
 import org.nasdanika.ai.Embeddings;
 import org.nasdanika.capability.ServiceCapabilityFactory;
-import org.nasdanika.capability.ServiceCapabilityFactory.Requirement;
 import org.nasdanika.cli.SubCommandCapabilityFactory;
 import org.nasdanika.common.ProgressMonitor;
 
