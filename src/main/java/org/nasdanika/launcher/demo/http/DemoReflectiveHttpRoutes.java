@@ -1,6 +1,9 @@
 package org.nasdanika.launcher.demo.http;
 
 import org.json.JSONObject;
+import org.nasdanika.html.HTMLFactory;
+import org.nasdanika.html.HTMLPage;
+import org.nasdanika.html.bootstrap.BootstrapFactory;
 import org.nasdanika.http.HttpServerRouteBuilder;
 import org.nasdanika.http.ReflectiveHttpServerRouteBuilder.Route;
 import org.nasdanika.http.ReflectiveHttpServerRouteBuilder.RouteBuilder;
@@ -73,7 +76,17 @@ public class DemoReflectiveHttpRoutes {
 		result.put("result", "Hello World!");
 		return result;
 	}
+	
+	@Route("index.html")
+	public HTMLPage getHome(
+			HttpServerRequest request, 
+			HttpServerResponse response) {
 		
+		HTMLPage ret = BootstrapFactory.INSTANCE.bootstrapCdnHTMLPage();
+		ret.body(HTMLFactory.INSTANCE.tag("b", "Hello world!"));
+		return ret;
+	}	
+	
 	@Route("do-something-else")
 	public Mono<String> doSomethingElse(
 			HttpServerRequest request, 
