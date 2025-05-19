@@ -29,7 +29,6 @@ import org.nasdanika.html.Button;
 import org.nasdanika.html.HTMLPage;
 import org.nasdanika.html.Tag;
 import org.nasdanika.html.TextArea;
-import org.nasdanika.html.alpinejs.AlpineJs;
 import org.nasdanika.html.alpinejs.AlpineJsFactory;
 import org.nasdanika.html.bootstrap.BootstrapFactory;
 import org.nasdanika.html.bootstrap.Breakpoint;
