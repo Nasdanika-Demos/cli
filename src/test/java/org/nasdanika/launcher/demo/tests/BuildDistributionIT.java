@@ -81,6 +81,17 @@ public class BuildDistributionIT {
 				"-p", ":",
 				"-a", "$@");		
 		
+		// Help		
+//		Launcher.main(new String[] {
+//			"help",
+//			"site",
+//			"--page-template=page-template.yml#/",
+//			"--root-action-icon=https://docs.nasdanika.org/images/nasdanika-logo.png",
+//			"--root-action-location=https://github.com/Nasdanika-Demos",
+//			"--root-action-text=Nasdanika Demos",
+//			"target/doc-site__"				
+//		});
+		
 	}
 
 }
