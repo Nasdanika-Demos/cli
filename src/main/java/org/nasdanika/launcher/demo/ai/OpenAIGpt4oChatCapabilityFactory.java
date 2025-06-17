@@ -8,6 +8,8 @@ import org.nasdanika.capability.CapabilityProvider;
 import org.nasdanika.capability.ServiceCapabilityFactory;
 import org.nasdanika.common.ProgressMonitor;
 import org.nasdanika.common.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.azure.ai.openai.OpenAIClientBuilder;
 
@@ -17,6 +19,7 @@ public class OpenAIGpt4oChatCapabilityFactory extends ServiceCapabilityFactory<C
 
 	private static final String MODEL = "gpt-4o";
 	private static final String PROVIDER = "OpenAI";
+	private static Logger LOGGER = LoggerFactory.getLogger(OpenAIGpt4oChatCapabilityFactory.class);
 
 	@Override
 	public boolean isFor(Class<?> type, Object requirement) {
@@ -55,7 +58,8 @@ public class OpenAIGpt4oChatCapabilityFactory extends ServiceCapabilityFactory<C
 		return wrapCompletionStage(openAIClientBuilderCS.thenCombine(openTelemetryCS, this::createChat));
 	}
 		
-	protected Chat createChat(OpenAIClientBuilder openAIClientBuilder, OpenTelemetry openTelemetry) {
+	protected Chat createChat(OpenAIClientBuilder openAIClientBuilder, OpenTelemetry openTelemetry) {		
+		LOGGER.info("Created " + OpenAIChat.class + " service. Provider: {}, Model: {}", PROVIDER, MODEL);
 		return new OpenAIChat(
 			openAIClientBuilder.buildClient(),
 			openAIClientBuilder.buildAsyncClient(),

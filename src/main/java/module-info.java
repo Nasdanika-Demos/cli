@@ -4,6 +4,7 @@ import org.nasdanika.launcher.demo.IAnnotatedElementProviderTestCommandFactory;
 import org.nasdanika.launcher.demo.ModuleGraphCommandFactory;
 import org.nasdanika.launcher.demo.ai.ChatServerCommandFactory;
 import org.nasdanika.launcher.demo.ai.EnvironmentVariableKeyCredentialCapabilityFactory;
+import org.nasdanika.launcher.demo.ai.ListModelsCommandFactory;
 import org.nasdanika.launcher.demo.ai.OpenAIAdaEmbeddingsCapabilityFactory;
 import org.nasdanika.launcher.demo.ai.OpenAIGpt4oChatCapabilityFactory;
 import org.nasdanika.launcher.demo.ai.PdfIndexerCommandFactory;
@@ -62,5 +63,6 @@ module org.nasdanika.launcher.demo {
 		OpenAIAdaEmbeddingsCapabilityFactory,
 		OpenAIGpt4oChatCapabilityFactory,
 		PdfIndexerCommandFactory,
-		ChatServerCommandFactory;		
+		ChatServerCommandFactory,
+		ListModelsCommandFactory;		
 }

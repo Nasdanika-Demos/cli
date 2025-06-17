@@ -9,6 +9,8 @@ import org.nasdanika.capability.CapabilityProvider;
 import org.nasdanika.capability.ServiceCapabilityFactory;
 import org.nasdanika.common.ProgressMonitor;
 import org.nasdanika.common.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.azure.ai.openai.OpenAIClientBuilder;
 import com.knuddels.jtokkit.api.EncodingType;
@@ -19,6 +21,7 @@ public class OpenAIAdaEmbeddingsCapabilityFactory extends ServiceCapabilityFacto
 
 	private static final String MODEL = "text-embedding-ada-002";
 	private static final String PROVIDER = "OpenAI";
+	private static Logger LOGGER = LoggerFactory.getLogger(OpenAIAdaEmbeddingsCapabilityFactory.class);
 
 	@Override
 	public boolean isFor(Class<?> type, Object requirement) {
@@ -61,6 +64,9 @@ public class OpenAIAdaEmbeddingsCapabilityFactory extends ServiceCapabilityFacto
 	protected Embeddings createEmbeddings(
 			OpenAIClientBuilder openAIClientBuilder, 
 			OpenTelemetry openTelemetry) {
+		
+		LOGGER.info("Created " + OpenAIEmbeddings.class + " service. Provider: {}, Model: {}", PROVIDER, MODEL);
+		
 		return new OpenAIEmbeddings(
 				openAIClientBuilder.buildClient(),
 				openAIClientBuilder.buildAsyncClient(),
