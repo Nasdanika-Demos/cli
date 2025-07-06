@@ -27,7 +27,7 @@ module org.nasdanika.launcher.demo {
 	requires java.xml.bind;
 	requires org.nasdanika.models.java.cli;
 	requires reactor.netty.http;
-	requires org.nasdanika.http;
+	requires org.nasdanika.html.http;
 	requires org.nasdanika.cli;
 	requires org.nasdanika.models.app.cli;
 	requires org.nasdanika.models.rules.cli;
