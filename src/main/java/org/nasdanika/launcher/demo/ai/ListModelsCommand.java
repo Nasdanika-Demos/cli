@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 import java.util.Objects;
 
 import org.nasdanika.ai.Chat;
-import org.nasdanika.ai.Embeddings;
+import org.nasdanika.ai.TextFloatVectorEmbeddingModel;
 import org.nasdanika.ai.Model;
 import org.nasdanika.capability.CapabilityLoader;
 import org.nasdanika.cli.ParentCommands;
@@ -23,7 +23,7 @@ import picocli.CommandLine.Command;
 @ParentCommands(RootCommand.class)
 public class ListModelsCommand extends TelemetryCommand {
 	
-	private List<Embeddings> embeddings;
+	private List<TextFloatVectorEmbeddingModel> embeddingModel;
 	private List<Chat> chats;
 	
 	protected String getInstrumentationScopeName() {
@@ -39,28 +39,28 @@ public class ListModelsCommand extends TelemetryCommand {
 	}	
 
 	public ListModelsCommand(
-			List<Embeddings> embeddings,
+			List<TextFloatVectorEmbeddingModel> embeddingModel,
 			List<Chat> chats,
 			OpenTelemetry openTelemetry,
 			CapabilityLoader capabilityLoader) {
 		super(openTelemetry, capabilityLoader);
-		this.embeddings = embeddings;
+		this.embeddingModel = embeddingModel;
 		this.chats = chats;
 	}
 
 	@Override
 	protected Integer execute(Span commandSpan) throws Exception {
-		if (embeddings != null && !embeddings.isEmpty()) {
-			List<Embeddings> sel = embeddings
+		if (embeddingModel != null && !embeddingModel.isEmpty()) {
+			List<TextFloatVectorEmbeddingModel> sel = embeddingModel
 				.stream()
 				.filter(Objects::nonNull)
 				.sorted(this::compareModels)
 				.toList();
 			
 			System.out.println("Embeddings");
-			for (Entry<String, List<Embeddings>> pe: Util.groupBy(sel, Model::getProvider).entrySet()) {
+			for (Entry<String, List<TextFloatVectorEmbeddingModel>> pe: Util.groupBy(sel, Model::getProvider).entrySet()) {
 				System.out.println("  " + pe.getKey());
-				for (Embeddings e: pe.getValue()) {
+				for (TextFloatVectorEmbeddingModel e: pe.getValue()) {
 					System.out.println("    " + e.getName());
 					if (!Util.isBlank(e.getVersion())) {
 						System.out.println("      Version:" + e.getName());

@@ -15,11 +15,11 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.nasdanika.ai.Chat;
 import org.nasdanika.ai.Chat.ResponseMessage;
-import org.nasdanika.ai.Embeddings;
 import org.nasdanika.ai.SearchResult;
 import org.nasdanika.ai.SimilaritySearch;
 import org.nasdanika.ai.SimilaritySearch.EmbeddingsItem;
 import org.nasdanika.ai.SimilaritySearch.IndexId;
+import org.nasdanika.ai.TextFloatVectorEmbeddingModel;
 import org.nasdanika.ai.cli.HnswIndexCommandBase;
 import org.nasdanika.capability.CapabilityLoader;
 import org.nasdanika.cli.ParentCommands;
@@ -65,7 +65,7 @@ import reactor.netty.http.server.HttpServerRoutes;
 public class ChatServerCommand extends AbstractHttpServerCommand {
 	
 	protected OpenTelemetry openTelemetry;
-	private Embeddings embeddings;
+	private TextFloatVectorEmbeddingModel embeddingModel;
 	private Chat chat;
 	
 	protected String getInstrumentationScopeName() {
@@ -81,12 +81,12 @@ public class ChatServerCommand extends AbstractHttpServerCommand {
 	}	
 
 	public ChatServerCommand(
-			Embeddings embeddings,
+			TextFloatVectorEmbeddingModel embeddingModel,
 			Chat chat,
 			OpenTelemetry openTelemetry,
 			CapabilityLoader capabilityLoader) {
 		super(capabilityLoader);
-		this.embeddings = embeddings;
+		this.embeddingModel = embeddingModel;
 		this.chat = chat;
 		this.openTelemetry = openTelemetry;		
 	}	
@@ -140,7 +140,7 @@ public class ChatServerCommand extends AbstractHttpServerCommand {
 			HnswIndex<IndexId, float[], EmbeddingsItem, Float> hnswIndex = HnswIndexCommandBase.loadIndex(index);			
 			SimilaritySearch<List<Float>, Float> vectorSearch = SimilaritySearch.from(exact ? hnswIndex.asExactIndex() : hnswIndex);				
 			SimilaritySearch<List<List<Float>>, Float> multiVectorSearch = SimilaritySearch.adapt(vectorSearch);	
-			SimilaritySearch<String, Float> textSearch = SimilaritySearch.embeddingsSearch(multiVectorSearch, embeddings);
+			SimilaritySearch<String, Float> textSearch = SimilaritySearch.textFloatVectorEmbeddingSearch(multiVectorSearch, embeddingModel);
 			
 			Tracer tracer = openTelemetry.getTracer(getInstrumentationScopeName(), getInstrumentationScopeVersion());
 			

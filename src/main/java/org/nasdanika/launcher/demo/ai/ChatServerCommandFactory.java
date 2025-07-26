@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.concurrent.CompletionStage;
 
 import org.nasdanika.ai.Chat;
-import org.nasdanika.ai.Embeddings;
+import org.nasdanika.ai.EmbeddingGenerator;
+import org.nasdanika.ai.TextFloatVectorEmbeddingModel;
 import org.nasdanika.capability.ServiceCapabilityFactory;
 import org.nasdanika.cli.SubCommandCapabilityFactory;
 import org.nasdanika.common.ProgressMonitor;
@@ -25,13 +26,13 @@ public class ChatServerCommandFactory extends SubCommandCapabilityFactory<ChatSe
 			Loader loader,
 			ProgressMonitor progressMonitor) {
 		
-		Requirement<Embeddings.Requirement, Embeddings> embeddingsRequirement = ServiceCapabilityFactory.createRequirement(Embeddings.class);			
-		CompletionStage<Embeddings> embeddingsCS = loader.loadOne(embeddingsRequirement, progressMonitor);
+		Requirement<EmbeddingGenerator.Requirement, TextFloatVectorEmbeddingModel> embeddingsRequirement = ServiceCapabilityFactory.createRequirement(TextFloatVectorEmbeddingModel.class);			
+		CompletionStage<TextFloatVectorEmbeddingModel> embeddingsCS = loader.loadOne(embeddingsRequirement, progressMonitor);
 		
 		Requirement<Chat.Requirement, Chat> chatRequirement = ServiceCapabilityFactory.createRequirement(Chat.class);			
 		CompletionStage<Chat> chatCS = loader.loadOne(chatRequirement, progressMonitor);
 		
-		record Config(Embeddings embeddings, Chat chat) {}		
+		record Config(TextFloatVectorEmbeddingModel embeddingModel, Chat chat) {}		
 		
 		CompletionStage<Config> configCS = embeddingsCS.thenCombine(chatCS, Config::new);		
 		
@@ -41,7 +42,7 @@ public class ChatServerCommandFactory extends SubCommandCapabilityFactory<ChatSe
 		return configCS.thenCombine(
 				openTelemetryCS,
 				(config, openTelemetry) -> new ChatServerCommand(
-					config.embeddings(), 
+					config.embeddingModel(), 
 					config.chat(),
 					openTelemetry, 
 					loader.getCapabilityLoader()));

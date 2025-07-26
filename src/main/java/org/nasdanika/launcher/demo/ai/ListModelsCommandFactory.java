@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.concurrent.CompletionStage;
 
 import org.nasdanika.ai.Chat;
-import org.nasdanika.ai.Embeddings;
+import org.nasdanika.ai.EmbeddingGenerator;
+import org.nasdanika.ai.TextFloatVectorEmbeddingModel;
 import org.nasdanika.capability.ServiceCapabilityFactory;
 import org.nasdanika.cli.SubCommandCapabilityFactory;
 import org.nasdanika.common.ProgressMonitor;
@@ -25,13 +26,13 @@ public class ListModelsCommandFactory extends SubCommandCapabilityFactory<ListMo
 			Loader loader,
 			ProgressMonitor progressMonitor) {
 		
-		Requirement<Embeddings.Requirement, Embeddings> embeddingsRequirement = ServiceCapabilityFactory.createRequirement(Embeddings.class);			
-		CompletionStage<List<Embeddings>> embeddingsCS = loader.loadAll(embeddingsRequirement, progressMonitor);
+		Requirement<EmbeddingGenerator.Requirement, TextFloatVectorEmbeddingModel> embeddingsRequirement = ServiceCapabilityFactory.createRequirement(TextFloatVectorEmbeddingModel.class);			
+		CompletionStage<List<TextFloatVectorEmbeddingModel>> embeddingsCS = loader.loadAll(embeddingsRequirement, progressMonitor);
 		
 		Requirement<Chat.Requirement, Chat> chatRequirement = ServiceCapabilityFactory.createRequirement(Chat.class);			
 		CompletionStage<List<Chat>> chatCS = loader.loadAll(chatRequirement, progressMonitor);
 		
-		record Config(List<Embeddings> embeddings, List<Chat> chat) {}		
+		record Config(List<TextFloatVectorEmbeddingModel> embeddings, List<Chat> chat) {}		
 		
 		CompletionStage<Config> configCS = embeddingsCS.thenCombine(chatCS, Config::new);		
 		

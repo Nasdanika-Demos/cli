@@ -47,12 +47,12 @@
         <dependency>            
             <groupId>org.nasdanika.ai</groupId>
             <artifactId>cli</artifactId>
-            <version>2025.6.0</version>
+            <version>2025.6.1</version>
         </dependency>
         <dependency>            
             <groupId>org.nasdanika.ai</groupId>
             <artifactId>openai</artifactId>
-            <version>2025.6.0</version>
+            <version>2025.6.1</version>
         </dependency>
 		<dependency>
 			<groupId>org.nasdanika.models.app</groupId>
