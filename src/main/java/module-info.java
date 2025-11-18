@@ -39,8 +39,8 @@ module org.nasdanika.launcher.demo {
 	requires org.nasdanika.html.alpinejs;
 	requires org.nasdanika.ai;
 	
-	opens org.nasdanika.launcher.demo to info.picocli;
-	opens org.nasdanika.launcher.demo.java to info.picocli;
+	opens org.nasdanika.launcher.demo to info.picocli, org.nasdanika.cli;
+	opens org.nasdanika.launcher.demo.java to info.picocli, org.nasdanika.cli;
 	opens org.nasdanika.launcher.demo.rules; // to info.picocli, org.nasdanika.common;
 	opens org.nasdanika.launcher.demo.rules.inspectors to org.nasdanika.common; // For inspector reflection
 	opens org.nasdanika.launcher.demo.drawio; // For processor instantiation and resource loading
