@@ -257,7 +257,7 @@ public class ChatServerCommand extends AbstractHttpServerCommand {
 			TelemetryFilter telemetryFilter) {
 		Mono<String> requestString = request.receive().aggregate().asString();
 		
-		record Result(String text, List<SearchResult<Float>> results, List<ResponseMessage> chatResponses) {}
+		record Result(String text, List<SearchResult<Float>> results, List<? extends ResponseMessage> chatResponses) {}
 		
 		Mono<String> responseString = requestString
 			.flatMap(rs -> {

@@ -49,26 +49,21 @@ public class TestHttpServerRoutes {
 	@Test
 	@Disabled
 	public void testDrawioRoutes() throws Exception {
-		Document document = Document.load(
-				URI.createFileURI(new File("test-data/drawio-http/diagram.drawio").getCanonicalPath()), 
-				null, 
-				null);
+		Document document = Document.load(URI.createFileURI(new File("test-data/drawio-http/diagram.drawio").getCanonicalPath()));
 		
 		Map<org.nasdanika.graph.Element,Component> components = new HashMap<>();
 		
-		ElementProcessorFactory<Object> elementProcessorFactory = new ElementProcessorFactory<Object>(
+		ElementProcessorFactory<Object, Object, Object, Object> elementProcessorFactory = new ElementProcessorFactory<Object, Object, Object, Object>(
 				document , 
 				new CapabilityLoader(), 
 				"processor") {
-
-			/**
-			 * This override is needed to collect processors implementing {@link Component}
-			 */
+			
+			
 			@Override
 			protected Object doCreateProcessor(
-					ProcessorConfig config, 
+					ProcessorConfig<Object, Object, Object> config, 
 					boolean parallel,
-					BiConsumer<org.nasdanika.graph.Element, BiConsumer<ProcessorInfo<Object>, ProgressMonitor>> infoProvider,
+					BiConsumer<Element, BiConsumer<ProcessorInfo<Object, Object, Object, Object>, ProgressMonitor>> infoProvider,
 					Consumer<CompletionStage<?>> endpointWiringStageConsumer, 
 					ProgressMonitor progressMonitor) {
 				
@@ -88,7 +83,7 @@ public class TestHttpServerRoutes {
 			
 		ProgressMonitor progressMonitor = new PrintStreamProgressMonitor();
 		
-		Map<Element, ProcessorInfo<Object>> processors = elementProcessorFactory.createProcessors(
+		Map<Element, ProcessorInfo<Object, Object, Object, Object>> processors = elementProcessorFactory.createProcessors(
 				null, 
 				null, 
 				progressMonitor);
@@ -142,19 +137,16 @@ public class TestHttpServerRoutes {
 	@Test
 	@Disabled
 	public void testDrawioRoutesSimple() throws Exception {
-		Document document = Document.load(
-				URI.createFileURI(new File("test-data/drawio-http/diagram.drawio").getCanonicalPath()), 
-				null, 
-				null);
+		Document document = Document.load(URI.createFileURI(new File("test-data/drawio-http/diagram.drawio").getCanonicalPath()));
 		
-		ElementProcessorFactory<Object> elementProcessorFactory = new ElementProcessorFactory<Object>(
+		ElementProcessorFactory<Object, Object, Object, Object> elementProcessorFactory = new ElementProcessorFactory<Object, Object, Object, Object>(
 				document, 
 				new CapabilityLoader(), 
 				"processor");
 			
 		ProgressMonitor progressMonitor = new PrintStreamProgressMonitor();
 		
-		Map<Element, ProcessorInfo<Object>> processors = elementProcessorFactory.createProcessors(
+		Map<Element, ProcessorInfo<Object, Object, Object, Object>> processors = elementProcessorFactory.createProcessors(
 				null, 
 				null, 
 				progressMonitor);
@@ -189,19 +181,16 @@ public class TestHttpServerRoutes {
 	@Test
 	@Disabled
 	public void testDrawioRouteBuilder() throws Exception {
-		Document document = Document.load(
-				URI.createFileURI(new File("test-data/drawio-http/route-builder.drawio").getCanonicalPath()), 
-				null, 
-				null);
+		Document document = Document.load(URI.createFileURI(new File("test-data/drawio-http/route-builder.drawio").getCanonicalPath()));
 		
-		ElementProcessorFactory<Object> elementProcessorFactory = new ElementProcessorFactory<Object>(
+		ElementProcessorFactory<Object, Object, Object, Object> elementProcessorFactory = new ElementProcessorFactory<Object, Object, Object, Object>(
 				document, 
 				new CapabilityLoader(), 
 				"processor");
 			
 		ProgressMonitor progressMonitor = new PrintStreamProgressMonitor();
 		
-		Map<Element, ProcessorInfo<Object>> processors = elementProcessorFactory.createProcessors(
+		Map<Element, ProcessorInfo<Object, Object, Object, Object>> processors = elementProcessorFactory.createProcessors(
 				null, 
 				null, 
 				progressMonitor);

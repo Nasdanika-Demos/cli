@@ -48,8 +48,8 @@ public class RouteBuilderProcessor implements HttpServerRouteBuilder {
 			ProgressMonitor loaderProgressMonitor,
 			Object data,
 			String fragment,
-			ProcessorConfig config,
-			BiConsumer<Element, BiConsumer<ProcessorInfo<Invocable>, ProgressMonitor>> infoProvider,
+			ProcessorConfig<Object,Object,Object> config,
+			BiConsumer<Element, BiConsumer<ProcessorInfo<Object,Object,Object,Invocable>, ProgressMonitor>> infoProvider,
 			Consumer<CompletionStage<?>> endpointWiringStageConsumer,
 			ProgressMonitor wiringProgressMonitor) {
 		

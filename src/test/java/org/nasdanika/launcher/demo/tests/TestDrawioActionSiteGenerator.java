@@ -37,7 +37,7 @@ public class TestDrawioActionSiteGenerator {
 		Document document = Document.load(new File("test-data/" + diagramName + ".drawio").getCanonicalFile()); 
 		DrawioHtmlAppGenerator actionGenerator = new DrawioHtmlAppGenerator();
 		ProgressMonitor progressMonitor = new PrintStreamProgressMonitor();		
-		Supplier<Collection<Label>> labelSupplier = actionGenerator.createLabelsSupplier(document, progressMonitor);
+		Supplier<Collection<Label>> labelSupplier = actionGenerator.createLabelsSupplier(document, null, progressMonitor);
 		Consumer<Diagnostic> diagnosticConsumer = d -> d.dump(System.out, 0);
 		Collection<Label> labels = labelSupplier.call(progressMonitor, diagnosticConsumer);
 		
