@@ -18,7 +18,7 @@ Loader loader = args[0];
 ProgressMonitor loaderProgressMonitor = args[1];
 Object data = args[2]; // From fragment
 ProcessorConfig config = args[3];
-BiConsumer<Element, BiConsumer<ProcessorInfo<Invocable>, ProgressMonitor>> infoProvider = args[4];
+BiConsumer<Element, BiConsumer<ProcessorInfo<Object,Object,Object,Invocable>, ProgressMonitor>> infoProvider = args[4];
 Consumer<CompletionStage<?>> endpointWiringStageConsumer = args[5];
 ProgressMonitor wiringProgressMonitor = args[6];
 
