@@ -8,7 +8,7 @@ public class DemoRuleSetCapabilityFactory extends RuleSetCapabilityFactory {
 
 	@Override
 	protected URI getRuleSetURI() {
-		return URI.createURI("demo-rule-set.yml").resolve(Util.createClassURI(getClass()));
+		return URI.createURI("demo-rule-set.yml").select(Util.createClassURI(getClass()));
 	}
 
 }
